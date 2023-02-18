@@ -47,25 +47,22 @@
     // Receive shares from all parties that submitted
     var shares = jiff_instance.share(input, compute_parties.length, compute_parties, input_parties);
 
-    // Compute the first maximum O(n)
+    // Compute the first maximum
     let maxShare = shares[1];
     let maxId = 1;
-    console.log(shares);
     for (let p = 1; p <= input_parties.length; p++) {
       let cmp = shares[p].sgt(maxShare);
       maxShare = cmp.if_else(shares[p], maxShare);
       maxId = cmp.if_else(p, maxId);
     }
-    console.log("max done");
 
-    // Determine if there is a tie O(n)
+    // Determine if there is a tie
     let occurrences = shares[1].seq(maxShare);
     for (let p = 2; p <= input_parties.length; p++) {
       occurrences = occurrences.sadd(shares[p].seq(maxShare));
     }
-    console.log("count done");
 
-    // Compute the second maximum O(n)
+    // Compute the second maximum
     let cmpFirstPass = shares[1].seq(maxShare);
     let secondMaxShare = cmpFirstPass.if_else(shares[2], shares[1]);
     for (let p = 1; p <= input_parties.length; p++) {
@@ -74,15 +71,10 @@
       let eq = max.seq(maxShare);
       secondMaxShare = eq.if_else(secondMaxShare, max);
     }
-    console.log("second max done");
 
-    console.log("open pmaxid");
     let pMaxId = jiff_instance.open(maxId, all_parties);
-    console.log("open pmax2value");
     let pMax2Value = jiff_instance.open(secondMaxShare, all_parties);
-    console.log("open ptie");
     let pTie = jiff_instance.open(occurrences, all_parties);
-    console.log("collect");
     return Promise.all([pMaxId, pMax2Value, pTie]);
   }
 }((typeof exports === "undefined" ? this.mpc = {} : exports), typeof exports !== "undefined"));
