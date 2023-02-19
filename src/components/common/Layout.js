@@ -26,6 +26,7 @@ import "../../styles/app.css";
  */
 const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
     const site = data.allGhostSettings.edges[0].node;
+    // Get the modal
     const twitterUrl = site.twitter
         ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}`
         : null;
@@ -67,9 +68,16 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 </Link>
                             </div>
                             <div className="site-mast-right">
+                                <div class="search-container">
+                                    <form class="no-submit">
+                                        <input class="no-submit" type="search" placeholder="Search..." method="GET" />
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="site-mast-right">
                                 {site.twitter && (
                                     <a
-                                        href={twitterUrl}
+                                        href="/404"
                                         className="site-nav-item"
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -83,7 +91,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 )}
                                 {site.facebook && (
                                     <a
-                                        href={facebookUrl}
+                                        href="/404"
                                         className="site-nav-item"
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -97,7 +105,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 )}
                                 <a
                                     className="site-nav-item"
-                                    href={`https://feedly.com/i/subscription/feed/${config.siteUrl}/rss/`}
+                                    href="/404"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -106,6 +114,30 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         src="/images/icons/rss.svg"
                                         alt="RSS Feed"
                                     />
+                                </a>
+                                <a 
+                                    className="site-nav-item"  
+                                >
+                                    <Link
+                                        className="site-nav-button"
+                                        variant="outline-success"
+                                        to="/login"
+                                    >
+                                        Sign Up
+                                    </Link>
+                                </a>
+                                <a 
+                                    className="site-nav-item"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                     <Link
+                                        className="site-nav-button"
+                                        variant="outline-success"
+                                        to="/login"
+                                    >
+                                        Login
+                                    </Link>
                                 </a>
                             </div>
                         </div>
