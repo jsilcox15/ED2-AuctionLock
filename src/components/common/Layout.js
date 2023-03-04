@@ -75,53 +75,13 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 </div>
                             </div>
                             <div className="site-mast-right">
-                                {site.twitter && (
-                                    <a
-                                        href="/404"
-                                        className="site-nav-item"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <img
-                                            className="site-nav-icon"
-                                            src="/images/icons/twitter.svg"
-                                            alt="Twitter"
-                                        />
-                                    </a>
-                                )}
-                                {site.facebook && (
-                                    <a
-                                        href="/404"
-                                        className="site-nav-item"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <img
-                                            className="site-nav-icon"
-                                            src="/images/icons/facebook.svg"
-                                            alt="Facebook"
-                                        />
-                                    </a>
-                                )}
-                                <a
-                                    className="site-nav-item"
-                                    href="/404"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <img
-                                        className="site-nav-icon"
-                                        src="/images/icons/rss.svg"
-                                        alt="RSS Feed"
-                                    />
-                                </a>
                                 <a 
                                     className="site-nav-item"  
                                 >
                                     <Link
                                         className="site-nav-button"
                                         variant="outline-success"
-                                        to="/login"
+                                        to="/register"
                                     >
                                         Sign Up
                                     </Link>
@@ -155,17 +115,70 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                         <nav className="site-nav">
                             <div className="site-nav-left">
                                 {/* The navigation items as setup in Ghost */}
+                                {/* 
                                 <Navigation
                                     data={site.navigation}
                                     navClass="site-nav-item"
-                                />
+                                />         */}
+                                <a 
+                                    className="site-nav-item"  
+                                >
+                                    <Link
+                                         className="site-nav-item"
+                                        variant="outline-success"
+                                        to="/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Home Favs
+                                    </Link>
+                                </a>
+                                <a 
+                                    className="site-nav-item"  
+                                >
+                                    <Link
+                                         className="site-nav-item"
+                                        variant="outline-success"
+                                        to="/tag/getting-started/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Clothing & Shoes
+                                    </Link>
+                                </a>
+                                <a 
+                                    className="site-nav-item"  
+                                >
+                                    <Link
+                                         className="site-nav-item"
+                                        variant="outline-success"
+                                        to="/author/ghost/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                       Cars & Parts
+                                    </Link>
+                                </a>
+                                <a 
+                                    className="site-nav-item"  
+                                >
+                                    <Link
+                                         className="site-nav-item"
+                                        variant="outline-success"
+                                        to="/404"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Appliances & Parts
+                                    </Link>
+                                </a>
                             </div>
                             <div className="site-nav-right">
                                 <Link
                                     className="site-nav-button"
-                                    to="/about"
+                                    to="/sellerform"
                                 >
-                                    About
+                                    Upload Auction
                                 </Link>
                                 <Link
                                     className="site-nav-button"
@@ -201,10 +214,50 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                             </a>
                         </div>
                         <div className="site-foot-nav-right">
-                            <Navigation
+                            {/* <Navigation
                                 data={site.navigation}
                                 navClass="site-foot-nav-item"
-                            />
+                            /> */}
+                            {site.twitter && (
+                                    <a
+                                        href="/404"
+                                        className="site-foot-nav-item"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <img
+                                            className="site-nav-icon"
+                                            src="/images/icons/twitter.svg"
+                                            alt="Twitter"
+                                        />
+                                    </a>
+                                )}
+                                {site.facebook && (
+                                    <a
+                                        href="/404"
+                                        className="site-foot-nav-item"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <img
+                                            className="site-nav-icon"
+                                            src="/images/icons/facebook.svg"
+                                            alt="Facebook"
+                                        />
+                                    </a>
+                                )}
+                                <a
+                                    className="site-foot-nav-item"
+                                    href="/404"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img
+                                        className="site-nav-icon"
+                                        src="/images/icons/rss.svg"
+                                        alt="RSS Feed"
+                                    />
+                                </a>
                         </div>
                     </div>
                 </footer>

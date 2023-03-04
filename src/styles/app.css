@@ -877,6 +877,7 @@ h6 {
 }
 
 .site-nav-item:hover {
+    color: #FBFCFA;
     text-decoration: none;
     opacity: 1;
 }
@@ -951,6 +952,7 @@ h6 {
 }
 
 .site-nav-button:hover {
+    color: #FBFCFA;
     text-decoration: none;
 }
 

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-//import { Link } from "gatsby";
+import { Link } from "gatsby";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Layout } from "../components/common";
-//import { Container } from 'react-bootstrap';
-//import Card from 'react-bootstrap/Card';
-//import Card from 'react-bootstrap/Card';
+
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
+import { Carousel, ListGroupItem } from 'react-bootstrap';
 import Helmet from 'react-helmet';
 import { withPrefix } from 'gatsby';
-import unknownImg from "../images/import-image.png";
+
+import carImg from "../images/car_box1.png";
+import phoneImg from "../images/phone_box2.png";
+import scaleImg from "../images/laptop_box.png";
 
 const BidPages = () => {
     let jiff_instance;
@@ -49,6 +51,44 @@ const BidPages = () => {
             </Helmet>
             <div className="container">
             <Card>
+                <Carousel variant="dark">
+                    <Carousel.Item>
+                        <img 
+                            className="d-block w-100" 
+                            src={carImg} 
+                            alt="trial01" 
+                            style={{ width: 400, height: 400 }}
+                        />
+                        <Carousel.Caption>
+                            <p>
+                            </p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img 
+                            src={scaleImg} 
+                            className="d-block w-100"
+                            alt="trial02" 
+                            style={{ width: 400, height: 400 }}
+                        />
+                        <Carousel.Caption>
+                                <p>
+                                </p>
+                        </Carousel.Caption>            
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img 
+                            src={phoneImg} 
+                            alt="trial03" 
+                            className="d-block w-100"
+                            style={{ width: 400, height: 400 }} 
+                        />
+                        <Carousel.Caption>
+                            <p>
+                            </p>
+                        </Carousel.Caption>            
+                    </Carousel.Item>
+                </Carousel>
                 <Card.Body>
                     <Card.Title style={{ textAlign: `center` }}><h1>... Item</h1></Card.Title>
                     <Card.Text>
@@ -61,7 +101,7 @@ const BidPages = () => {
                         <form>
                             <label>
                                 Bid Amount: $
-                                <input type="text" name="name" placeholder="Enter Your Bid Amount" onChange={(e) => setBidValue(e.target.value)}/>
+                                <input type="text" name="name" placeholder="Enter Bid Amount" onChange={(e) => setBidValue(e.target.value)}/>
                             </label>
                             <br/>
                             <label>

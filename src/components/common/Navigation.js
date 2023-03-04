@@ -19,12 +19,11 @@ const Navigation = ({ data, navClass }) => (
                 return (
                     <a
                         className={navClass}
-                        href={navItem.url}
-                        key={i}
+                        href="/404"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        {navItem.label}
+                        Clothing & Shoes
                     </a>
                 );
             } else {

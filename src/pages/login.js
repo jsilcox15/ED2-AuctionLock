@@ -4,32 +4,26 @@ import { Layout } from "../components/common";
 
 const LoginForm = ({ isShowLogin }) => {
   return (
-    <div className={`${isShowLogin ? "active" : ""} show`}>
-      <div className="login-form">
-        <div className="form-box solid">
-          <form className="App">
-            <h1 className="login-text">Sign Up</h1>
-            <label>Are you a Seller or Buyer?</label>
-            <br></br>
-            <input type="text" placeholder="Seller or Buyer" name="input" className="login-box" />
-            <br></br>
-            <label>Username</label>
-            <br></br>
-            <input type="text" placeholder="Enter Username" name="username" className="login-box" />
-            <br></br>
-            <label>Password</label>
-            <br></br>
-            <input type="password" placeholder="Enter Password" name="password" className="login-box" />
-            <br></br>
-            <label>Re-enter Password</label>
-            <br></br>
-            <input type="password" placeholder="Re-enter Password" name="password" className="login-box" />
-            <br></br>
-            <input type="submit" value="Register" className="login-btn" href="/index"/>
-          </form>
+    <Layout>
+        <div className={`${isShowLogin ? "active" : ""} show`}>
+        <div className="login-form">
+            <div className="form-box solid">
+            <form className="App">
+                <h1 className="login-text">Login</h1>
+                <label>Username</label>
+                <br></br>
+                <input type="text" placeholder="Username or Email" name="username" className="login-box" />
+                <br></br>
+                <label>Password</label>
+                <br></br>
+                <input type="password" placeholder="Password" name="password" className="login-box" />
+                <br></br>
+                <input type="submit" value="Login" className="login-btn" href="/index"/>
+            </form>
+            </div>
         </div>
-      </div>
-    </div>
+        </div>
+    </Layout>
   );
 };
 
