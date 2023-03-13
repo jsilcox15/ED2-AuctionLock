@@ -82,7 +82,7 @@ const SellerForm = () => (
                         <Form.Select defaultValue="Choose..." size="lg">
                             <option>Choose...</option>
                             <option value="1">Show who the winner is</option>
-                            <option value="2">Hid who the winner is</option>
+                            <option value="2">Hide who the winner is</option>
                         </Form.Select>
                         <Form.Text>
                             Required
