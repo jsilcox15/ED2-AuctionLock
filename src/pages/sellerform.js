@@ -76,6 +76,19 @@ const SellerForm = () => (
                             Required
                         </Form.Text>
                     </Form.Group>
+
+                    <Form.Group as={Col} controlId="productType">
+                        <Form.Label style={{ color: 'black', textAlign:'left' }}>Security</Form.Label>
+                        <Form.Select defaultValue="Choose..." size="lg">
+                            <option>Choose...</option>
+                            <option value="1">Show who the winner is</option>
+                            <option value="2">Hid who the winner is</option>
+                        </Form.Select>
+                        <Form.Text>
+                            Required
+                        </Form.Text>
+                    </Form.Group>
+
                 </Row>
 
                 <Row><p></p></Row>
