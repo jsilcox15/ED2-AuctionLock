@@ -176,15 +176,15 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                             <div className="site-nav-right">
                                 <Link
                                     className="site-nav-button"
-                                    to="/sellerform"
+                                    to="/CarTrial"
                                 >
                                     Upload Auction
                                 </Link>
                                 <Link
                                     className="site-nav-button"
-                                    to="/trial"
+                                    to="/CheckOut"
                                 >
-                                    Trial
+                                    Check Out
                                 </Link>
                             </div>
                         </nav>
