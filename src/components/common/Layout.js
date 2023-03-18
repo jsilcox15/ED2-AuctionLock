@@ -176,15 +176,23 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                             <div className="site-nav-right">
                                 <Link
                                     className="site-nav-button"
-                                    to="/sellerform"
+                                    to="/CarTrial"
                                 >
                                     Upload Auction
                                 </Link>
                                 <Link
                                     className="site-nav-button"
-                                    to="/trial"
+                                    to="/CheckOut"
+                                    style={{ fontSize: 15 }}
+                                
                                 >
-                                    Trial
+                                    &#128722;
+                                </Link>
+                                <Link
+                                    className="site-nav-button"
+                                    to="/SellerFormList"
+                                >
+                                    Trial 2
                                 </Link>
                             </div>
                         </nav>

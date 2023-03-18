@@ -514,6 +514,47 @@ h6 {
     font-weight: 500;
 }
 
+/* Carousel -- Product Display
+/* ---------------------------------------------------------- */
+
+.carousel {
+    width: 50%;
+    max-height: 300px;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 400px) {
+    .carousel {
+      /* Pushes out the margins on mobile devices so it lines up with the article body. */
+      margin-left: -20px !important;
+      margin-right: -20px !important;
+      width: inherit !important;
+    }
+  }
+  
+  .carousel:hover {
+    visibility: visible;
+    color: black;
+    bottom: 17%;
+  }
+  
+  .carousel .carousel > .carousel-control {
+    visibility: hidden;
+  }
+  
+  .carousel .carousel-control {
+    visibility: visible;
+    color: black;
+  }
+  
+  .carousel .carousel-inner {
+    background-color: #ffffff;
+  }
+
+  .carousel-inner .item img {
+    margin:0 auto;
+  }
+
+
 /* Layout
 /* ---------------------------------------------------------- */
 
@@ -855,6 +896,42 @@ h6 {
     transform: translateY(100px) scale(0) rotateY(180deg);
     opacity: 0;
   }
+
+
+
+/* displayProducts -- className: cards
+/* ---------------------------------------------------------- */
+.DP_cards {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.DP_cards:hover {
+    transform: scale(1.1);
+}
+
+.DP_cards__title {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+/* sellerformlist -- className: format
+/* ---------------------------------------------------------- */
+.format {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 4vw;
+  }
+
+.box_space {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    row-gap: 30px;
+  }
+
+
+
 
 
 /* Header

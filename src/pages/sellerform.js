@@ -1,18 +1,48 @@
-import * as React from "react";
+//import * as React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 import { Layout } from "../components/common";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
 import { Form, FloatingLabel } from 'react-bootstrap';
 
-const SellerForm = () => (
+const SellerForm = () => {
+
+    const [sellerInfo, setSellerInfo] = useState({
+        productName: "",
+        Manufacturer: "",
+        brandName: "",
+        Description: "",
+    });
+
+    const handleChange = (event) => {
+        setSellerInfo({...sellerInfo, [event.target.name]: event.target.value });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        console.log(sellerInfo);
+
+        setSellerInfo({ productName: "", Manufacturer: "", brandName: "", Description: "" });
+    };
+    
+
+    return (
     <Layout>
         <div className="container">
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="productName">
                         <Form.Label style={{ color: 'black', textAlign:'left' }}> Product Name: </Form.Label>
-                        <Form.Control type="text" placeholder="What is the Product Name?" size="lg"/>
+                        <Form.Control 
+                            type="text" 
+                            name="productName" 
+                            value={sellerInfo.productName} 
+                            onChange={handleChange} 
+                            placeholder="What is the Product Name?" 
+                            size="lg"
+                        />
                         <Form.Text>
                             Required
                         </Form.Text>
@@ -20,7 +50,14 @@ const SellerForm = () => (
 
                     <Form.Group as={Col} controlId="Manufacturer">
                         <Form.Label style={{ color: 'black', textAlign:'left' }}> Manufacturer: </Form.Label>
-                        <Form.Control type="text" placeholder="Who is the Manufacturer?" size="lg"/>
+                        <Form.Control 
+                            type="text" 
+                            name="Manufacturer" 
+                            value={sellerInfo.Manufacturer} 
+                            onChange={handleChange} 
+                            placeholder="Who is the Manufacturer?" 
+                            size="lg"
+                        />
                         <Form.Text>
                             Required
                         </Form.Text>
@@ -31,7 +68,14 @@ const SellerForm = () => (
 
                 <Form.Group className="mb-3" controlId="brandName">
                     <Form.Label style={{ color: 'black', textAlign:'left' }}> Brand Name: </Form.Label>
-                    <Form.Control type="text" placeholder="What is the brand name?" size="lg" />
+                    <Form.Control 
+                        type="text" 
+                        name="brandName" 
+                        value={sellerInfo.brandName} 
+                        onChange={handleChange} 
+                        placeholder="What is the brand name?" 
+                        size="lg" 
+                    />
                     <Form.Text>
                         Required
                     </Form.Text>
@@ -41,7 +85,15 @@ const SellerForm = () => (
 
                 <Form.Group className="mb-3"  controlId="Description">
                     <Form.Label style={{ color: 'black', textAlign:'left' }}> Description: </Form.Label>
-                    <Form.Control as="textarea" placeholder="Please describe the product?" rows={4} />
+                    <Form.Control 
+                        as="textarea" 
+                        placeholder="Please describe the product." 
+                        name="Description" 
+                        value={sellerInfo.Description} 
+                        onChange={handleChange} 
+                        size="lg" 
+                        rows={4} 
+                    />
                     <Form.Text>
                         Required
                     </Form.Text>
@@ -76,6 +128,19 @@ const SellerForm = () => (
                             Required
                         </Form.Text>
                     </Form.Group>
+
+                    <Form.Group as={Col} controlId="Security">
+                        <Form.Label style={{ color: 'black', textAlign:'left' }}>Security</Form.Label>
+                        <Form.Select defaultValue="Choose..." size="lg">
+                            <option>Choose...</option>
+                            <option value="1">Show who the winner is</option>
+                            <option value="2">Hide who the winner is</option>
+                        </Form.Select>
+                        <Form.Text>
+                            Required
+                        </Form.Text>
+                    </Form.Group>
+
                 </Row>
 
                 <Row><p></p></Row>
@@ -91,12 +156,13 @@ const SellerForm = () => (
 
                 <Row><p></p></Row>
 
-                <Button variant="outline-success" type="submit" size="lg">
+                <Button variant="outline-success" type="Submit" size="lg">
                     Submit
                 </Button>
             </Form>
         </div>
     </Layout>
-);
+    );
+};
 
 export default SellerForm;
