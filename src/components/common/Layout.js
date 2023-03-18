@@ -183,8 +183,16 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 <Link
                                     className="site-nav-button"
                                     to="/CheckOut"
+                                    style={{ fontSize: 15 }}
+                                
                                 >
-                                    Check Out
+                                    &#128722;
+                                </Link>
+                                <Link
+                                    className="site-nav-button"
+                                    to="/SellerFormList"
+                                >
+                                    Trial 2
                                 </Link>
                             </div>
                         </nav>
