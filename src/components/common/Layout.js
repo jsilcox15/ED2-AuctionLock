@@ -190,9 +190,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 </Link>
                                 <Link
                                     className="site-nav-button"
-                                    to="/SellerFormList"
+                                    to="/cards"
                                 >
-                                    Trial 2
+                                    Carousel trial 2
                                 </Link>
                             </div>
                         </nav>
