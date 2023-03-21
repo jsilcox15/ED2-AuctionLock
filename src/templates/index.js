@@ -32,20 +32,20 @@ import unknownImg from "../images/import-image.png";
     const posts = data.allGhostPost.edges;
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        (async () => {
-        let userData;
-        try {
-            const response = await fetch("https://randomuser.me/api/?results=100");
-            userData = await response.json();
-        } catch (error) {
-            console.log(error);
-            userData = [];
-        }
-        //setAllUsers(userData.results);
-        setUsers(userData.results);
-        })();
-    }, []); //useEffect should not repeat so we use the empty array at the end of useeffect "[]"
+  useEffect(() => {
+    (async () => {
+      let userData;
+      try {
+        const response = await fetch("https://dummyjson.com/products");
+        userData = await response.json();
+      } catch (error) {
+        console.log(error);
+        userData = [];
+      }
+      //setAllUsers(userData.results);
+      setUsers(userData.products);
+    })();
+  }, []); //useEffect should not repeat so we use the empty array at the end of useeffect "[]"
 
     return (
         <>
@@ -53,8 +53,8 @@ import unknownImg from "../images/import-image.png";
             <Layout isHome={true}>
                 <div className="format">
                     <div className="box_space">
-                          {users.map((user, index) => (
-                              <DisplayProduct key={index} userData={user} />
+                          {users.map((user, id) => (
+                              <DisplayProduct key={id} userData={user} />
                             ))}
                     </div>
                     <Pagination pageContext={pageContext} />

@@ -15,21 +15,21 @@ const displayProduct = ({ userData }) => {
                     <Card.Header style={{textAlign: "center"}}>Hot Bids &#128293;</Card.Header>
                     <Card.Img 
                       variant="top" 
-                      src={userData.picture.medium} 
+                      src={userData.thumbnail}  
                       style={{ height: 180, width: 230 }}
                     />
                     <Card.Body>
                         <Card.Title>
-                          <h2 className="DP_cards__title">
-                            Names: 
+                        <h2 className="DP_cards__title">
+                            {userData.title} 
                           </h2>
-                          <p>{userData.name.first} {userData.name.last}</p>
+                          <p>Stock: {userData.stock}</p>
                         </Card.Title>
                         <Card.Text>
-                            <p> Some quick example text to build on the card title and make up the bulk of the card's content. </p>
+                            <p>Category: {userData.category} </p>
                         </Card.Text>
                         <div style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
-                          <Button variant="outline-success" size="lg" href="/bidPages" >
+                          <Button variant="outline-success" size="lg" href="/cards" >
                             Enter Auction
                         </Button>
                         </div>
