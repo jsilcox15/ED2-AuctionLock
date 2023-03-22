@@ -36,7 +36,8 @@ const RegisterForm = () => {
                 <h1 className="login-text">Sign Up</h1>
                 <label>Are you a Seller or a Buyer?</label>
                 <br></br>
-                <input 
+                <input
+                  style={{ color: 'white'}} 
                   type="text" 
                   name="status" 
                   placeholder="Seller or Buyer" 
@@ -49,6 +50,7 @@ const RegisterForm = () => {
                 <label>Username</label>
                 <br></br>
                 <input 
+                  style={{ color: 'white'}}
                   type="text" 
                   placeholder="Enter Username" 
                   name="user" 
@@ -60,6 +62,7 @@ const RegisterForm = () => {
                 <label>Password</label>
                 <br></br>
                 <input 
+                  style={{ color: 'white'}}
                   type="password" 
                   placeholder="Enter Password" 
                   name="password" 
@@ -71,6 +74,7 @@ const RegisterForm = () => {
                 <label>Re-enter Password</label>
                 <br></br>
                 <input 
+                  style={{ color: 'white'}}
                   type="password" 
                   placeholder="Re-enter Password" 
                   name="confirmPass" 

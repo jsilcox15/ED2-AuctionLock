@@ -29,6 +29,7 @@ const LoginForm = () => {
                 <label>Username</label>
                 <br></br>
                 <input 
+                  style={{ color: 'white'}}
                   type="text" 
                   placeholder="Enter Username" 
                   name="username" 
@@ -39,7 +40,8 @@ const LoginForm = () => {
                 <br></br>
                 <label>Password</label>
                 <br></br>
-                <input 
+                <input
+                  style={{ color: 'white'}} 
                   type="password" 
                   placeholder="Enter Password" 
                   name="password" 
