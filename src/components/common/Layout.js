@@ -181,18 +181,6 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 >
                                     &#128722;
                                 </Link>
-                                <Link
-                                    className="site-nav-button"
-                                    to="/carousel"
-                                >
-                                    JSON Trial
-                                </Link>
-                                <Link
-                                    className="site-nav-button"
-                                    to="/Bidding"
-                                >
-                                    bid trials
-                                </Link>
                             </div>
                         </nav>
                     </div>
