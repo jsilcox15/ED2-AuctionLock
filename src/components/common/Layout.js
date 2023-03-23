@@ -68,13 +68,6 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 </Link>
                             </div>
                             <div className="site-mast-right">
-                                <div class="search-container">
-                                    <form class="no-submit">
-                                        <input class="no-submit" type="search" placeholder="Search..." method="GET" />
-                                    </form>
-                                </div>
-                            </div>
-                            <div className="site-mast-right">
                                 <a 
                                     className="site-nav-item"  
                                 >
@@ -190,9 +183,15 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 </Link>
                                 <Link
                                     className="site-nav-button"
-                                    to="/cards"
+                                    to="/carousel"
                                 >
-                                    Carousel trial 2
+                                    JSON Trial
+                                </Link>
+                                <Link
+                                    className="site-nav-button"
+                                    to="/Bidding"
+                                >
+                                    bid trials
                                 </Link>
                             </div>
                         </nav>

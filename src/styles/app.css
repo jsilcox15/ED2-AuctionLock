@@ -686,7 +686,7 @@ h6 {
   form .no-submit {
     width: 180px;
     align-items: center;
-    color: white;
+    color: rgb(0, 0, 0);
     right: 0;
     display: flex;
     padding: 2px;
@@ -696,11 +696,11 @@ h6 {
   }
   
   input.no-submit {
-    border: 1px solid white;
+    border: 1px solid rgb(0, 0, 0);
     width: 100%;
     padding: 9px 4px 9px 4px;
     /* change background image later*/
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/06/Antu_dialog-icon-preview.svg");
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
     background-size: 13px;
     background-repeat: no-repeat;
     background-position: 10px center;
@@ -720,7 +720,7 @@ h6 {
   }
   
   input[type="search"]::placeholder {
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   input[type="search"]:focus {

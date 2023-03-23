@@ -30,28 +30,41 @@ import unknownImg from "../images/import-image.png";
  */
  const Index = ({ data, location, pageContext }) => {
     const posts = data.allGhostPost.edges;
+    const [allUsers, setAllUsers] = useState([]);
     const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      let userData;
-      try {
-        const response = await fetch("https://dummyjson.com/products");
-        userData = await response.json();
-      } catch (error) {
-        console.log(error);
-        userData = [];
-      }
-      //setAllUsers(userData.results);
-      setUsers(userData.products);
-    })();
-  }, []); //useEffect should not repeat so we use the empty array at the end of useeffect "[]"
+    useEffect(() => {
+        (async () => {
+        let userData;
+        try {
+            const response = await fetch("https://dummyjson.com/products");
+            userData = await response.json();
+        } catch (error) {
+            console.log(error);
+            userData = [];
+        }
+        setAllUsers(userData.products);
+        setUsers(userData.products);
+        })();
+    }, []);
+
+    const filterCards = event => {
+        const value = event.target.value.toLowerCase();
+        const filteredUsers = allUsers.filter(user => (`${user.title} ${user.category}`.toLowerCase().includes(value)));
+        setUsers(filteredUsers);
+    }
 
     return (
         <>
             <MetaData location={location} />
             <Layout isHome={true}>
                 <div className="format">
+                    <div class="search-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <form class="no-submit">
+                            <input class="no-submit" type="search" placeholder="Search..." onInput={filterCards} />
+                        </form>
+                    </div>
+                    <div><p></p></div>
                     <div className="box_space">
                           {users.map((user, id) => (
                               <DisplayProduct key={id} userData={user} />
