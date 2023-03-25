@@ -62,61 +62,24 @@ const BidPage = () => {
     //const [users, setUsers] = useState();
 
     
-    const [title, setTitle] = useState(); //arr[1].value
-    const [desc, setDesc] = useState(); //arr[2].value
-    const [brand, setBrand] = useState(); //arr[7].value
+    const [title, setTitle] = useState(); 
+    const [desc, setDesc] = useState(); 
+    const [brand, setBrand] = useState(); 
 
-    const arr = []
-    const arr2 = []
-    const arr3 = []
-
-    //let displayData
     function pullJson() {
         fetch('https://dummyjson.com/products/' + storeId)
         .then(response => response.json())
         .then(responseData => {
-            Object.keys(responseData).forEach((key =>
-                arr.push({name: key, value: responseData[key]})
-            ))
-            console.log(responseData)
-            console.log(arr)
-            setTitle(arr[1].value)
-        })
-        //return
-    }
-
-    function pullJson2() {
-        fetch('https://dummyjson.com/products/' + storeId)
-        .then(response => response.json())
-        .then(responseData => {
-            Object.keys(responseData).forEach((key =>
-                arr2.push({name: key, value: responseData[key]})
-            ))
-            console.log(responseData)
-            console.log(arr2)
-            setDesc(arr2[2].value)
-        })
-        //return
-    }
-
-    function pullJson3() {
-        fetch('https://dummyjson.com/products/' + storeId)
-        .then(response => response.json())
-        .then(responseData => {
-            Object.keys(responseData).forEach((key =>
-                arr3.push({name: key, value: responseData[key]})
-            ))
-            console.log(responseData)
-            console.log(arr3)
-            setBrand(arr3[7].value)
+            setTitle(responseData.title);
+            setDesc(responseData.description);
+            setBrand(responseData.brand);
+            //console.log(responseData.images)
         })
         //return
     }
     
     useEffect(() => {
         pullJson()
-        pullJson2()
-        pullJson3()
     }, [])  //{title} //{desc} //{brand}
 
   return (
