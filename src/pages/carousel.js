@@ -1,77 +1,51 @@
-import * as React from "react";
-//import { Link, StaticQuery } from "gatsby";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Carousel, ListGroupItem } from 'react-bootstrap';
+import React, { useState, useRef, useEffect } from "react";
 import { Layout } from "../components/common";
-import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
-//import { GatsbyImage } from "gatsby-plugin-image"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CarousekTrail from "../pages/CarousekTrail.js";
 
-//import { useStaticQuery, graphql } from "gatsby";
+function App() {
+  const [allUsers, setAllUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
+  useEffect(() => {
+    (async () => {
+      let userData;
+      try {
+        const response = await fetch("https://dummyjson.com/products");
+        userData = await response.json();
+      } catch (error) {
+        console.log(error);
+        userData = [];
+      }
+      setAllUsers(userData.products);
+      setUsers(userData.products);
+    })();
+  }, []);
 
-import carImg from "../images/car_box1.png";
-import phoneImg from "../images/phone_box2.png";
-import scaleImg from "../images/laptop_box.png";
+  const filterCards = event => {
+    const value = event.target.value.toLowerCase();
+    const filteredUsers = allUsers.filter(user => (`${user.title} ${user.category}`.toLowerCase().includes(value)));
+    setUsers(filteredUsers);
+  }
 
-
-const NotFoundPage = () => (
+  return (
     <Layout>
-    <div className="container">
-            <Card>
-                <Carousel variant="dark">
-                    <Carousel.Item>
-                        <img 
-                            className="d-block w-100" 
-                            src={carImg} 
-                            alt="trial01" 
-                            style={{ width: 400, height: 400 }}
-                        />
-                        <Carousel.Caption>
-                            <p>
-                            </p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img 
-                            src={scaleImg} 
-                            className="d-block w-100"
-                            alt="trial02" 
-                            style={{ width: 400, height: 400 }}
-                        />
-                        <Carousel.Caption>
-                                <p>
-                                </p>
-                        </Carousel.Caption>            
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img 
-                            src={phoneImg} 
-                            alt="trial03" 
-                            className="d-block w-100"
-                            style={{ width: 400, height: 400 }} 
-                        />
-                        <Carousel.Caption>
-                            <p>
-                            </p>
-                        </Carousel.Caption>            
-                    </Carousel.Item>
-                </Carousel>
-                <Card.Body>
-                    <Card.Title style={{ textAlign: `center` }}><h1>... Item</h1></Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                    </Card.Text>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroup.Item>
-                        <form>
-                        </form>
-                    </ListGroup.Item>
-                </ListGroup>
-            </Card>
-            </div>
-        </Layout>
-);
+      <div className="format">
+        <div class="search-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <form class="no-submit">
+                <input class="no-submit" type="search" placeholder="Search..." onInput={filterCards} />
+            </form>
+        </div>
+        <div><p></p></div>
+        <div className="box_space">
+            {users.map((user, id) => (
+                <CarousekTrail key={id} userData={user} />
+              ))}
+          </div>
+      </div>
+    </Layout>
+  );
+}
 
-export default NotFoundPage;
+export default App;
+

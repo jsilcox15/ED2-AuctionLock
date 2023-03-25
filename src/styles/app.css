@@ -888,7 +888,16 @@ h6 {
 }
 
 
+.contained {
+    height: 600px;
+    width: 500px;
+    border: 2px solid gold;
+}
 
+.Img_sl {
+    max-width: 300px; /* add this line */
+    max-height: 300px;
+}
 
 /* sellerformlist -- className: format
 /* ---------------------------------------------------------- */
