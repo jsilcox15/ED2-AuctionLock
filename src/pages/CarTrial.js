@@ -20,6 +20,15 @@ const FormX = () => {
         productType: "",
         Security: "",
     });
+
+    const [image, setImage] = useState([])
+    console.log(image)
+
+    const [thumbnail, setThumbnail] = useState([])
+    console.log(thumbnail)
+
+
+
     const [isFormVisible, setIsFormVisible] = useState(true);
 
     const inputFileRef = useRef();
@@ -44,6 +53,8 @@ const FormX = () => {
 	<Layout>
 	  <div className="container">
         <Form onSubmit={handleSubmit}>
+            <h1 style={{ textAlign:'center' }}>Seller Form</h1>
+            <Row></Row>
           <Row className="mb-3">
               <Form.Group as={Col} controlId="productName">
                    <Form.Label style={{ color: 'black', textAlign:'left' }}> 
@@ -177,10 +188,63 @@ const FormX = () => {
                 </Row>
 
                 <Row><p></p></Row>
+                    <Form.Group controlId="formFileTn" className="mb-3">
+                                <Form.Label style={{ color: 'black', textAlign:'left' }}>Upload Desired Thumbnail</Form.Label>
+                                <div>
+                                        {
+                                            Array.from(thumbnail).map(item => {
+                                            return (
+                                                <span>
+                                                    <img
+                                                        style={{ padding: '10px' }}
+                                                        width={150} height={100}
+                                                        src={item ? URL.createObjectURL(item) : null} 
+                                                    />
+                                                </span>
+                                            )
+                                            })
+                                        }
+                                </div>
+                                <Form.Control 
+                                    type="file" 
+                                    size="lg" 
+                                    onChange={(e) => {
+                                        setThumbnail(e.target.files)
+                                      }} 
+                                    ref={inputFileRef} 
+                                />
+                                <Form.Text>
+                                    Upload one image to make a great first impression on potential buyers.
+                                    Required
+                                </Form.Text>
+                    </Form.Group>
 
                     <Form.Group controlId="formFileLg" className="mb-3">
                                 <Form.Label style={{ color: 'black', textAlign:'left' }}>Upload Images of Product</Form.Label>
-                                <Form.Control type="file" size="lg" ref={inputFileRef} />
+                                    <div>
+                                        {
+                                            Array.from(image).map(item => {
+                                            return (
+                                                <span>
+                                                    <img
+                                                        style={{ padding: '10px' }}
+                                                        width={150} height={100}
+                                                        src={item ? URL.createObjectURL(item) : null} 
+                                                    />
+                                                </span>
+                                            )
+                                            })
+                                        }
+                                    </div>
+                                <Form.Control
+                                    onChange={(e) => {
+                                        setImage(e.target.files)
+                                      }} 
+                                    multiple 
+                                    type="file" 
+                                    size="lg" 
+                                    ref={inputFileRef} 
+                                />
                                 <Form.Text>
                                     You can upload one or more images.
                                     Required
