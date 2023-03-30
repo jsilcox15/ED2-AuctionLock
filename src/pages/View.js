@@ -10,9 +10,9 @@ const View = ({ data }) => {
   return (
     <Layout>
         <div className="container">
-        <h2> A new auction has been created!!! </h2>
-        <p> How exciting! </p>
-        <p> Here is the auction you created! </p>
+        <div style={{textAlign: "center"}}>
+            <h2> How exciting! A new auction has been created!!! </h2>
+        </div>
             <Container>
                 <Row>
                     <Col md={4}>
