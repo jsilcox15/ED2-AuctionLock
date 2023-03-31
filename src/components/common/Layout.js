@@ -188,9 +188,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 <Button variant="success" size="lg">
                                     <Link
                                         className="site-nav-react-button"
-                                        to="/CarTrial"
+                                        to="/sellerform"
                                     >
-                                        Add Auction
+                                        Add Auction 
                                     </Link>
                                 </Button>
                                 {' '}
