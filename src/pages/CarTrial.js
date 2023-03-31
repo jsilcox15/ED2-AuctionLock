@@ -205,7 +205,7 @@ const FormX = () => {
                             <option value="Cars & Parts">Cars & Parts</option>
                             <option value="Electronics & Parts">Electronics & Parts</option>
                             <option value="Appliances & Parts">Appliances & Parts</option>
-                            <option value="Home and Accessories">Home and Accessories</option>
+                            <option value="Home & Accessories">Home & Accessories</option>
                             <option value="Other">Other</option>
                         </Form.Select>
                         <Form.Text>

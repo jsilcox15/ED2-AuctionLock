@@ -70,27 +70,31 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                             <div className="site-mast-right">
                                 <a 
                                     className="site-nav-item"  
-                                >
-                                    <Link
-                                        className="site-nav-button"
-                                        variant="outline-success"
-                                        to="/register"
-                                    >
-                                        Sign Up
-                                    </Link>
+                                > 
+                                    <Button variant="success" size="lg">
+                                        <Link
+                                            className="site-nav-react-button"
+                                            to="/register"
+                                            style={{fontWeight: "bold"}}
+                                        >
+                                            Sign Up
+                                        </Link>
+                                    </Button>
                                 </a>
                                 <a 
                                     className="site-nav-item"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                     <Link
-                                        className="site-nav-button"
-                                        variant="outline-success"
-                                        to="/login"
-                                    >
-                                        Login
-                                    </Link>
+                                    <Button variant="success" size="lg">
+                                        <Link
+                                            className="site-nav-react-button"
+                                            to="/login"
+                                            style={{fontWeight: "bold"}}
+                                        >
+                                            Login
+                                        </Link>
+                                    </Button>
                                 </a>
                             </div>
                         </div>
@@ -117,13 +121,14 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     className="site-nav-item"  
                                 >
                                     <Link
-                                         className="site-nav-item"
+                                        className="site-nav-item"
                                         variant="outline-success"
                                         to="/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                    >
-                                        Home Favs
+                                        style={{fontWeight: "bold"}}
+                                    > 
+                                        Home Favs   
                                     </Link>
                                 </a>
                                 <a 
@@ -132,11 +137,11 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     <Link
                                          className="site-nav-item"
                                         variant="outline-success"
-                                        to="/tag/getting-started/"
+                                        to="/404"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        Clothing & Shoes
+                                        Clothing, Shoes, & Fashion
                                     </Link>
                                 </a>
                                 <a 
@@ -145,7 +150,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     <Link
                                          className="site-nav-item"
                                         variant="outline-success"
-                                        to="/author/ghost/"
+                                        to="/404"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -162,25 +167,42 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        Appliances & Parts
+                                        Electronics & Parts
+                                    </Link>
+                                </a>
+                                <a 
+                                    className="site-nav-item"  
+                                >
+                                    <Link
+                                         className="site-nav-item"
+                                        variant="outline-success"
+                                        to="/404"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Home & Accessories
                                     </Link>
                                 </a>
                             </div>
                             <div className="site-nav-right">
-                                <Link
-                                    className="site-nav-button"
-                                    to="/CarTrial"
-                                >
-                                    Upload Auction
-                                </Link>
-                                <Link
-                                    className="site-nav-button"
-                                    to="/CheckOut"
-                                    style={{ fontSize: 15 }}
-                                
-                                >
-                                    &#128722;
-                                </Link>
+                                <Button variant="success" size="lg">
+                                    <Link
+                                        className="site-nav-react-button"
+                                        to="/CarTrial"
+                                    >
+                                        Add Auction
+                                    </Link>
+                                </Button>
+                                {' '}
+                                <Button variant="light" size="lg">
+                                    <Link
+                                        className="site-nav-react-button"
+                                        to="/CheckOut"
+                                        style={{ fontSize: 14 }}
+                                    >
+                                        &#128722;
+                                    </Link>
+                                </Button>
                             </div>
                         </nav>
                     </div>

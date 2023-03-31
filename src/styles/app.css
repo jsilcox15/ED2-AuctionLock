@@ -934,7 +934,7 @@ h6 {
     display: inline-block;
     padding: 5px 10px;
     color: #fff;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
 .site-nav-item:hover {
@@ -1013,6 +1013,20 @@ h6 {
 }
 
 .site-nav-button:hover {
+    color: #FBFCFA;
+    text-decoration: none;
+}
+
+/* React Button -- Layout
+/* ---------------------------------------------------------- */
+
+.site-nav-react-button {
+    color: #fff;
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+.site-nav-react-button:hover {
     color: #FBFCFA;
     text-decoration: none;
 }
