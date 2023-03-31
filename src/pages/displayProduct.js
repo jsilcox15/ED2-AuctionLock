@@ -34,7 +34,7 @@ const displayProduct = ({ userData }) => {
                         </Button>
                         </div>
                     </Card.Body>
-                    <Card.Footer className="text-muted" style={{textAlign: "center"}}>&#128337; Started </Card.Footer>
+                    <Card.Footer className="text-muted" style={{textAlign: "center"}}>&#128337; Ends </Card.Footer>
                     </Card>
         </div>
   )

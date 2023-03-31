@@ -93,7 +93,7 @@ const BidPage = () => {
     <section class="section-content padding-y bg">
         <div class="container">
         <Card style={{height: 650 }}>
-            <Card.Header>Started TIMEEEEEE</Card.Header>
+            <Card.Header>&#128337; Ends </Card.Header>
             <Card.Body>
                     <Row>
                         <Col md={6}>
@@ -197,13 +197,13 @@ const BidPage = () => {
                     </Row> 
             </Card.Body>
             <p id="testoutput"></p>
-           <Card.Footer className="text-muted">Started TIMEEE</Card.Footer> 
         </Card>
 
         <Row><div></div></Row>
 
         <article class="mt-5">
             <Card>
+                <Card.Header>&#128337; Ends </Card.Header>
                 <Card.Body>
                     <h2>Description: </h2>
                         <Container>

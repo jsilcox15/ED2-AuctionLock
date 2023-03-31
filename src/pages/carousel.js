@@ -33,7 +33,7 @@ function App() {
       <div className="format">
         <div class="search-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <form class="no-submit">
-                <input class="no-submit" type="search" placeholder="Search..." onInput={filterCards} />
+                <input class="no-submit" type="search" placeholder="Search Names and Categories..." onInput={filterCards} />
             </form>
         </div>
         <div><p></p></div>
