@@ -63,12 +63,12 @@ const View = ({ data }) => {
                             <section>
                                 <a href="#" class="text-primary btn-link"></a>
                                 <h2 class="title">
-                                    {data?.productName} 
+                                    {data?.title} 
                                 </h2>
                                 <div>
                                     <Card.Text style={{textAlign: "center"}}>
                                         <p>
-                                            &#128129; Category: {data?.productType}
+                                            &#128129; Category: {data?.category}
                                         </p>
                                     </Card.Text>
                                     <hr style={{height: '2px', borderWidth: 0, color: '#5A5A5A', backgroundColor: '#5A5A5A'}} />
@@ -143,7 +143,7 @@ const View = ({ data }) => {
                     <h2 style={{ color: 'black', textAlign:'center' }}>Description: </h2>
                         <Container>
                             <p style={{ color: 'black', textAlign:'left' }}>
-                                {data?.Description}
+                                {data?.description}
                             </p>
                         </Container>
                 <hr style={{height: '2px', borderWidth: 0, color: '#5A5A5A', backgroundColor: '#5A5A5A'}} />
@@ -156,7 +156,7 @@ const View = ({ data }) => {
                                     <Container>
                                         <Col md={11} style={{ color: 'black'}}>
                                             <dd style={{ color: 'black', textAlign:'center' }}> 
-                                                <li>{data?.Manufacturer}</li> 
+                                                <li>{data?.manufacturer}</li> 
                                             </dd>
                                         </Col>
                                     </Container>
@@ -169,7 +169,7 @@ const View = ({ data }) => {
                                     <Container>
                                         <Col md={11} style={{ color: 'black'}}>
                                             <dd style={{ color: 'black', textAlign:'center' }}> 
-                                                <li>{data?.brandName}</li>
+                                                <li>{data?.brand}</li>
                                             </dd>
                                         </Col>
                                     </Container>
@@ -184,7 +184,7 @@ const View = ({ data }) => {
                                     <Container>
                                         <Col md={11} style={{ color: 'black'}}>
                                             <dd style={{ color: 'black', textAlign:'center' }}> 
-                                                <li>{data?.Condition}</li> 
+                                                <li>{data?.condition}</li> 
                                             </dd>
                                         </Col>
                                     </Container>

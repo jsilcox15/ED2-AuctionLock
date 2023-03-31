@@ -12,13 +12,13 @@ import View from "../pages/View.js";
 
 const FormX = () => {
     const [formValues, setFormValues] = useState({
-       productName: "",
-        Manufacturer: "",
-        brandName: "",
-        Description: "",
-        Condition: "",
-        productType: "",
-        Security: "",
+        title: "",
+        manufacturer: "",
+        brand: "",
+        description: "",
+        condition: "",
+        category: "",
+        security: "",
         endDate: ""
     });
 
@@ -60,7 +60,7 @@ const FormX = () => {
             <h1 style={{ textAlign:'center' }}>Seller Form</h1>
             <Row></Row>
           <Row className="mb-3">
-              <Form.Group as={Col} controlId="productName">
+              <Form.Group as={Col} controlId="title">
                    <Form.Label 
                         style={{ color: 'black', textAlign:'left' }}
                     > 
@@ -68,8 +68,8 @@ const FormX = () => {
 			       </Form.Label>
                         <Form.Control 
 					        type="text" 
-					        name="productName" 
-                 			value={formValues?.productName} 
+					        name="title" 
+                 			value={formValues?.title} 
                   		    onChange={handleChange} 
                   		    placeholder="What is the Product Name?" 
                   		    size="lg"
@@ -78,7 +78,7 @@ const FormX = () => {
                             Required
                         </Form.Text>
                 </Form.Group>
-                <Form.Group as={Col} controlId="Manufacturer">
+                <Form.Group as={Col} controlId="manufacturer">
                     <Form.Label 
                         style={{ color: 'black', textAlign:'left' }}
                     > 
@@ -86,10 +86,10 @@ const FormX = () => {
                     </Form.Label>
                         <Form.Control 
                         type="text" 
-                        name="Manufacturer" 
+                        name="manufacturer" 
                         placeholder="Who is the Manufacturer?" 
                         size="lg"
-                        value={formValues.Manufacturer}
+                        value={formValues.manufacturer}
                         onChange={handleChange}
                         />
                         <Form.Text>
@@ -101,16 +101,16 @@ const FormX = () => {
             <Row><p></p></Row>
 
             <Row className="mb-3">
-              <Form.Group as={Col} controlId="brandName">
+              <Form.Group as={Col} controlId="brand">
                 <Form.Label style={{ color: 'black', textAlign:'left' }}> 
                     Brand Name: 
                 </Form.Label>
                         <Form.Control
                             type="text" 
-                            name="brandName" 
+                            name="brand" 
                             placeholder="What is the brand name?" 
                             size="lg" 
-                            value={formValues.brandName}
+                            value={formValues.brand}
                             onChange={handleChange}
                         />
                         <Form.Text>
@@ -127,7 +127,6 @@ const FormX = () => {
                         <Form.Control 
                             type="date" 
                             name="endDate" 
-                            //placeholder="Who is the Manufacturer?" 
                             size="lg"
                             value={formValues.endDate}
                             onChange={handleChange}
@@ -141,7 +140,7 @@ const FormX = () => {
 
             <Row><p></p></Row>
 
-                <Form.Group className="mb-3"  controlId="Description">
+                <Form.Group className="mb-3"  controlId="description">
                     <Form.Label 
                         style={{ color: 'black', textAlign:'left' }}
                     > 
@@ -150,10 +149,10 @@ const FormX = () => {
                     <Form.Control 
                         as="textarea" 
                         placeholder="Please describe the product." 
-                        name="Description"
+                        name="description"
                         size="lg" 
                         rows={4}  
-                        value={formValues.Description}
+                        value={formValues.description}
                         onChange={handleChange}
                     />
                     <Form.Text>
@@ -164,7 +163,7 @@ const FormX = () => {
                 <Row><p></p></Row>
 
                 <Row className="mb-3">
-                    <Form.Group as={Col} controlId="Condition">
+                    <Form.Group as={Col} controlId="condition">
                         <Form.Label 
                             style={{ color: 'black', textAlign:'left' }}
                         > 
@@ -173,8 +172,8 @@ const FormX = () => {
                         <Form.Select 
                             defaultValue="Choose..." 
                             size="lg"
-                            name="Condition"
-                            value={formValues.Condition}
+                            name="condition"
+                            value={formValues.condition}
                             onChange={handleChange}
                         >
                             <option>Choose...</option>
@@ -187,7 +186,7 @@ const FormX = () => {
                         </Form.Text>
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="productType">
+                    <Form.Group as={Col} controlId="category">
                         <Form.Label 
                             style={{ color: 'black', textAlign:'left' }}
                         >
@@ -196,8 +195,8 @@ const FormX = () => {
                         <Form.Select 
                             defaultValue="Choose..." 
                             size="lg"
-                            name="productType"
-                            value={formValues.productType}
+                            name="category"
+                            value={formValues.category}
                             onChange={handleChange}
                         >
                             <option>Choose...</option>
@@ -213,7 +212,7 @@ const FormX = () => {
                         </Form.Text>
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="Security">
+                    <Form.Group as={Col} controlId="security">
                         <Form.Label 
                             style={{ color: 'black', textAlign:'left' }}
                         >
@@ -222,8 +221,8 @@ const FormX = () => {
                         <Form.Select 
                             defaultValue="Choose..." 
                             size="lg"
-                            name="Security"
-                            value={formValues.Security}
+                            name="security"
+                            value={formValues.security}
                             onChange={handleChange}
                         >
                             <option>Choose...</option>

@@ -56,6 +56,9 @@ const BidPage = () => {
     
     const [title, setTitle] = useState(); 
     const [desc, setDesc] = useState(); 
+
+    const [category, setCategory] = useState(); 
+
     const [brand, setBrand] = useState(); 
     const [images, setImages] = useState([]);
 
@@ -65,6 +68,7 @@ const BidPage = () => {
         .then(responseData => {
             setTitle(responseData.title);
             setDesc(responseData.description);
+            setCategory(responseData.category);
             setBrand(responseData.brand);
             setImages(responseData.images);
             //console.log(responseData.images)
@@ -81,7 +85,7 @@ const BidPage = () => {
     
     useEffect(() => {
         pullJson()
-    }, [])  //{title} //{desc} //{brand} //{imagess}
+    }, [])  //{title} //{desc} //{brand} //{imagess} //{category}
 
   return (
     <Layout>
@@ -135,7 +139,11 @@ const BidPage = () => {
                                     {title} 
                                 </h2>
                                 <div>
-                                    <a href="#"> <i class="fa fa-heart"></i> Save for later </a>
+                                    <Card.Text style={{textAlign: "center"}}>
+                                        <p>
+                                            &#128129; Category: {category}
+                                        </p>
+                                    </Card.Text>
                                     <hr style={{height: '2px', borderWidth: 0, color: '#5A5A5A', backgroundColor: '#5A5A5A'}} />
                                 </div> 
 
