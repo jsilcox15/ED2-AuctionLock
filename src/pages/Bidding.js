@@ -11,10 +11,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 
 import { Row, Col, Button, Card, Form, Container, FloatingLabel, ListGroup, ListGroupItem  } from 'react-bootstrap';
-import ImgGallary from "../pages/ImgGallary.js";
-
-
-import EnterBid from "../pages/EnterBid.js";
+//import ImGallary from "../pages/ImgGallary.js";
+//import Trial from "../pages/trial.js";
+import { isArray } from "lodash";
 
 
 const BidPage = () => {
@@ -54,17 +53,11 @@ const BidPage = () => {
     const urlParams = new URLSearchParams(queryString);
     const storeId = urlParams.get('id');
     console.log(storeId);
-
-    //fetch('https://dummyjson.com/products/' + storeId)
-    //https://i.dummyjson.com/data/products/1/1.jpg
-    //.then(res => res.json())
-    //.then(console.log);
-    //const [users, setUsers] = useState();
-
     
     const [title, setTitle] = useState(); 
     const [desc, setDesc] = useState(); 
     const [brand, setBrand] = useState(); 
+    const [images, setImages] = useState([]);
 
     function pullJson() {
         fetch('https://dummyjson.com/products/' + storeId)
@@ -73,14 +66,22 @@ const BidPage = () => {
             setTitle(responseData.title);
             setDesc(responseData.description);
             setBrand(responseData.brand);
+            setImages(responseData.images);
             //console.log(responseData.images)
+            //console.log(setImages(responseData.images));
+            //console.log(Array.isArray(responseData.images)); //renders true (is array)
         })
         //return
+    }
+
+    const [currentIndex, setCurrentIndex] = useState();
+    function handleChange(index) {
+        setCurrentIndex(index);
     }
     
     useEffect(() => {
         pullJson()
-    }, [])  //{title} //{desc} //{brand}
+    }, [])  //{title} //{desc} //{brand} //{imagess}
 
   return (
     <Layout>
@@ -91,7 +92,6 @@ const BidPage = () => {
     <div className="App">
     <section class="section-content padding-y bg">
         <div class="container">
-    
         <Card style={{height: 650 }}>
             <Card.Header>Started TIMEEEEEE</Card.Header>
             <Card.Body>
@@ -101,31 +101,28 @@ const BidPage = () => {
                                 <section>
                                     <Row>
                                     <div>
-                                        <Container>
-                                            <div>
-                                                <div style={{height: 400, width: 400 }}>
-                                                    <Carousel autoPlay interval="5000" transitionTime="300" infiniteLoop useKeyboardArrows>
-                                                        <div>
-                                                            <img className="Img_sl"
-                                                                src={"https://i.dummyjson.com/data/products/" + storeId + "/1.jpg"} alt="Imag1"
-                                                            />
+                                        <div style={{height: 450, width: 400 }}>
+                                            <Carousel
+                                                showArrows={true}
+                                                autoPlay={true}
+                                                infiniteLoop={true}
+                                                interval="5000" 
+                                                transitionTime="300"
+                                                useKeyboardArrows={true}
+                                                selectedItem={images[currentIndex]}
+                                                onChange={handleChange}
+                                            >
+                                                {
+                                                    images.map((image, index) => (
+                                                        <div key={index}>
+                                                        <img className="Img_sl" src={image} alt={index} />
                                                         </div>
-                                                        <div>
-                                                            <img className="Img_sl"
-                                                                src={"https://i.dummyjson.com/data/products/" + storeId + "/2.jpg"} alt="Img2" />
-                                                        </div>
-                                                        <div>
-                                                            <img className="Img_sl"
-                                                                src={"https://i.dummyjson.com/data/products/" + storeId + "/3.jpg"} alt="Img3" />
-                                                        </div>
-                                                    </Carousel>
-                                                </div>
-                                            </div>
-                                        </Container>
+                                                    ))
+                                                }
+                                            </Carousel>
+                                        </div>
                                     </div>
-                                    
                                     </Row>
-                                    
                                 </section>
                             </aside>
                         </Col>
