@@ -2,6 +2,7 @@ import React, { useState } from "react";
 //import * as React from "react";
 import { Link } from "gatsby";
 import { Layout } from "../components/common";
+import Axios from "axios";
 
 const RegisterForm = () => { 
   //const [user, setUser] = useState('');
@@ -22,8 +23,15 @@ const RegisterForm = () => {
 
   const handleSubmit = (event) => {
       event.preventDefault();
-      
-      console.log(userInfo);
+
+      Axios.post("http://localhost:9999/register", {
+        username: userInfo.user,
+        password: userInfo.password,
+      }, {
+          withCredentials: true
+      }).then((response) => {
+        console.log(response);
+      });
 
       setUserInfo({ user: "", status: "", password: "", confirmPass: "" });
   };

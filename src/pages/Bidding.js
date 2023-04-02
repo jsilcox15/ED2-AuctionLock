@@ -15,36 +15,42 @@ import { Row, Col, Button, Card, Form, Container, FloatingLabel, ListGroup, List
 //import Trial from "../pages/trial.js";
 import { isArray } from "lodash";
 
+import Axios from "axios";
+
 
 const BidPage = () => {
 
     let jiff_instance;
     const [bidValue, setBidValue] = useState('');
-    const [partyId, setPartyId] = useState('');
 
     const mpc = window.mpc;
 
     function demoSubmit() {
-        const INPUT_PARTIES = 3;
-        const COMPUTE_PARTIES = 2;
         const COMPUTATION_ID = "auction-test";
-        var options = { party_count: INPUT_PARTIES + COMPUTE_PARTIES, party_id: parseInt(partyId, 10), Zp: 127 };
 
         let hostname = "http://localhost:8080";
 
-        console.log(`Submitting bid with value ${bidValue} and partyId ${partyId}`);
+        let options = {
+            initialization: {token: "asdf"},
+        };
 
-        jiff_instance = mpc.connect(hostname, COMPUTATION_ID, options);
-        var upper_parties = ['s1'];
-        for (var i = INPUT_PARTIES + 1; i <= INPUT_PARTIES + COMPUTE_PARTIES; i++) {
-          upper_parties.push(i);
-        }
-        jiff_instance.wait_for(["s1", 4, 5], function() {
-            var promise = mpc.compute({ value: parseInt(bidValue, 10), compute_count: COMPUTE_PARTIES, input_count: INPUT_PARTIES });
-            promise.then(function (r) {
-                let output = document.getElementById("testoutput");
-                output.innerText = `The winner is party ${r}`;
-            });
+        let jiff_instance = mpc.connect(hostname, COMPUTATION_ID, options);
+
+        jiff_instance.wait_for(mpc.JUDGE_IDS.concat("s1"), () => {
+            console.log("I am ID: " + jiff_instance.id);
+            jiff_instance.share(parseInt(bidValue, 10), 2, mpc.JUDGE_IDS.concat("s1"), [ jiff_instance.id ]);
+            jiff_instance.disconnect(true, true);
+        });
+    }
+
+    function checkResults() {
+        Axios.get("http://localhost:9999/jiff/results").then((response) => {
+            let results = response.data.results;
+            let s = `Bidder ${results[0]} won for $${results[1]}`;
+            if (results[2] > 1) {
+                s += " (Tie)";
+            }
+            setResults(s);
         });
     }
    
@@ -61,6 +67,8 @@ const BidPage = () => {
 
     const [brand, setBrand] = useState(); 
     const [images, setImages] = useState([]);
+
+    const [results, setResults] = useState("");
 
     function pullJson() {
         fetch('https://dummyjson.com/products/' + storeId)
@@ -168,35 +176,10 @@ const BidPage = () => {
 
                                         <Row />
 
-                                        <Row className="mb-3">
-                                            <Form.Group as={Col} controlId="name">
-                                                <Form.Label style={{ color: 'black', textAlign:'left' }}> Party ID: </Form.Label>
-                                                <Form.Control 
-                                                    type="text" 
-                                                    name="name" 
-                                                    placeholder="ID" 
-                                                    onChange={(e) => setPartyId(e.target.value)}
-                                                    size="lg"
-                                                />
-                                            </Form.Group>
-                                        </Row>
-
-                                        <Row />
-
-                                        <Row className="mb-3">
-                                            <Form.Group as={Col} controlId="name">
-                                                <Form.Label style={{ color: 'black', textAlign:'left' }}> Token </Form.Label>
-                                                <Form.Control 
-                                                    type="text" 
-                                                    name="name" 
-                                                    placeholder="Auth" 
-                                                    size="lg"
-                                                />
-                                            </Form.Group>
-                                        </Row>
-
-                                        <Row />
                                         <Button onClick={demoSubmit} as="input" size="lg" variant="outline-success" type="button" value="Submit" />
+                                        <br/>
+                                        <Button onClick={checkResults} as="input" size="lg" variant="outline-success" type="button" value="Check" />
+                                        <p>{results}</p>
                                     </Form>
                                 </div>
                             </section> 
