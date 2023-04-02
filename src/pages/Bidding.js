@@ -19,6 +19,7 @@ import Axios from "axios";
 
 
 const BidPage = () => {
+    let myPartyId;
 
     let jiff_instance;
     const [bidValue, setBidValue] = useState('');
@@ -38,6 +39,7 @@ const BidPage = () => {
 
         jiff_instance.wait_for(mpc.JUDGE_IDS.concat("s1"), () => {
             console.log("I am ID: " + jiff_instance.id);
+            myPartyId = jiff_instance.id;
             jiff_instance.share(parseInt(bidValue, 10), 2, mpc.JUDGE_IDS.concat("s1"), [ jiff_instance.id ]);
             jiff_instance.disconnect(true, true);
         });
@@ -46,11 +48,16 @@ const BidPage = () => {
     function checkResults() {
         Axios.get("http://localhost:9999/jiff/results").then((response) => {
             let results = response.data.results;
-            let s = `Bidder ${results[0]} won for $${results[1]}`;
-            if (results[2] > 1) {
-                s += " (Tie)";
+            let winnerId = results[0];
+            let winnerAmount = results[1];
+            let tieCount = results[2];
+            if (tieCount > 1) {
+                setResults("Tie!");
+            } else if (winnerId === myPartyId) {
+                setResults(`You won for $${winnerAmount}`);
+            } else {
+                setResults("You lost");
             }
-            setResults(s);
         });
     }
    
