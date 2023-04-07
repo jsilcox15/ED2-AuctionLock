@@ -34,6 +34,7 @@ const LoginForm = () => {
                   placeholder="Enter Username" 
                   name="username" 
                   className="login-box" 
+                  id="inputID" 
                   value={loginInfo.username} 
                   onChange={handleChange}
                    />
@@ -45,7 +46,8 @@ const LoginForm = () => {
                   type="password" 
                   placeholder="Enter Password" 
                   name="password" 
-                  className="login-box" 
+                  className="login-box"
+                  id="inputID"  
                   value={loginInfo.password} 
                   onChange={handleChange}
                 />

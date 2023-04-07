@@ -2,6 +2,9 @@ import React, { useState } from "react";
 //import * as React from "react";
 import { Link } from "gatsby";
 import { Layout } from "../components/common";
+import { Form, FloatingLabel } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
 import Axios from "axios";
 
 const RegisterForm = () => { 
@@ -42,18 +45,26 @@ const RegisterForm = () => {
             <div className="form-box solid">
             <form className="App">
                 <h1 className="login-text">Sign Up</h1>
-                <label>Are you a Seller or a Buyer?</label>
-                <br></br>
-                <input
-                  style={{ color: 'white'}} 
-                  type="text" 
-                  name="status" 
-                  placeholder="Seller or Buyer" 
-                  className="login-box" 
-                  value={userInfo.status} 
-                  onChange={handleChange}
-                  //onChange={(e) => setStatus(e.target.value)} 
-                />
+                <Form.Group controlId="status">
+                        <Form.Label> 
+                            Are you a Seller or a Buyer? 
+                        </Form.Label>
+                        <Form.Select 
+                            defaultValue="Choose..."
+                            style={{ color: 'white'}}
+                            size="lg"
+                            name="status" 
+                            placeholder="Seller or Buyer" 
+                            className="login-box" 
+                            value={userInfo.status} 
+                            onChange={handleChange}
+                        >
+                            <option style={{ color: 'black'}}> Choose...</option>
+                            <option style={{ color: 'black'}} value="Seller">Seller</option>
+                            <option style={{ color: 'black'}} value="Buyer">Buyer</option>
+                            <option style={{ color: 'black'}} value="Neither">Neither</option>
+                        </Form.Select>
+                </Form.Group>
                 <br></br>
                 <label>Username</label>
                 <br></br>
@@ -62,7 +73,8 @@ const RegisterForm = () => {
                   type="text" 
                   placeholder="Enter Username" 
                   name="user" 
-                  className="login-box" 
+                  className="login-box"
+                  id="inputID" 
                   value={userInfo.user} 
                   onChange={handleChange}
                 />
@@ -75,6 +87,7 @@ const RegisterForm = () => {
                   placeholder="Enter Password" 
                   name="password" 
                   className="login-box" 
+                  id="inputID" 
                   value={userInfo.password} 
                   onChange={handleChange}
                 />
@@ -87,6 +100,7 @@ const RegisterForm = () => {
                   placeholder="Re-enter Password" 
                   name="confirmPass" 
                   className="login-box" 
+                  id="inputID" 
                   value={userInfo.confirmPass} 
                   onChange={handleChange}
                 />
