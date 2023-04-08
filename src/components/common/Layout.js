@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { Link, StaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { Container, Row, Col, Card, Image, Button, ListGroup, Modal, Form, FloatingLabel } from 'react-bootstrap';
 
-import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import unknownImg from "../../images/import-image.png";
 
 import AuctionLogo from "../../images/ghost-icon.png";
-import { Trial } from "../../pages/trial";
-import { Navigation } from ".";
+//import { Profile } from "../../pages/EnterBid.js";
+
+//import { Navigation } from ".";
 import config from "../../utils/siteConfig";
 
 // Styles
@@ -33,6 +33,8 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
     const facebookUrl = site.facebook
         ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
         : null;
+    
+    const [modalShow, setModalShow] = React.useState(false);
 
     return <>
         <Helmet>
@@ -188,19 +190,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 <Button variant="success" size="lg">
                                     <Link
                                         className="site-nav-react-button"
-                                        to="/sellerform"
+                                        to="/SellerFormList"
                                     >
-                                        Add Auction 
-                                    </Link>
-                                </Button>
-                                {' '}
-                                <Button variant="light" size="lg">
-                                    <Link
-                                        className="site-nav-react-button"
-                                        to="/CheckOut"
-                                        style={{ fontSize: 14 }}
-                                    >
-                                        &#128722;
+                                        Hide Exper
                                     </Link>
                                 </Button>
                             </div>

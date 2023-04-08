@@ -5,6 +5,7 @@ import { Layout } from "../components/common";
 import { Form, FloatingLabel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
+
 import Axios from "axios";
 
 const RegisterForm = () => { 
