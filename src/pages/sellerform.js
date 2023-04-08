@@ -2,7 +2,10 @@ import React, { useState, useRef } from "react";
 //import SellerFormTwo from "../pages/SellerFormTwo.js";
 //import displaySellerList from "../pages/displaySellerList.js"
 import { Link } from "gatsby";
-import { Layout } from "../components/common";
+
+//import { Layout } from "../components/common";
+import { Navigation } from "../components/common";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
 import { Form, FloatingLabel } from 'react-bootstrap';
@@ -54,7 +57,7 @@ const FormX = () => {
     return (
     <>
       {isFormVisible ? (
-	<Layout>
+	<Navigation>
 	  <div className="container">
         <Form onSubmit={handleSubmit}>
             <h1 style={{ textAlign:'center' }}>Seller Form</h1>
@@ -319,7 +322,7 @@ const FormX = () => {
 
             </Form>
 	    </div>
-        </Layout>
+        </Navigation>
       ) : (
         <View data={formValues} />
       )}
