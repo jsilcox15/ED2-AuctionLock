@@ -63,7 +63,6 @@ const RegisterForm = () => {
                             <option style={{ color: 'black'}}> Choose...</option>
                             <option style={{ color: 'black'}} value="Seller">Seller</option>
                             <option style={{ color: 'black'}} value="Buyer">Buyer</option>
-                            <option style={{ color: 'black'}} value="Neither">Neither</option>
                         </Form.Select>
                 </Form.Group>
                 <br></br>
