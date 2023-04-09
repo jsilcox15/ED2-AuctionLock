@@ -32,7 +32,7 @@ const UserProfile = () => (
                                 fluid 
                             />
                     <Card.Title tag="h5">
-                            Id: 
+                            ID: 
                     </Card.Title>
                     <br></br>
                     </Col>
