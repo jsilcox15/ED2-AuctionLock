@@ -9,7 +9,6 @@ import { Layout } from "../components/common";
 import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 
 const displayProduct = ({ userData }) => {
-
   return (
       <Link to ={"/Bidding?id=" + userData.id} style={{ textDecoration: 'none', color: 'black'}}>
         <div className="DP_cards">

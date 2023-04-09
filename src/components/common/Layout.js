@@ -196,6 +196,17 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     </Link>
                                 </Button>
                             </div>
+                            {'  '}
+                            <div className="site-nav-right">
+                                <Button variant="success" size="lg">
+                                    <Link
+                                        className="site-nav-react-button"
+                                        to="/EnterBid"
+                                    >
+                                        Conditional
+                                    </Link>
+                                </Button>
+                            </div>
                         </nav>
                     </div>
                 </header>
