@@ -15,6 +15,21 @@ import config from "../../utils/siteConfig";
 // Styles
 import "../../styles/app.css";
 
+
+function Item({ name, isRegistered }) {
+
+    if (isRegistered) {
+      return null;
+    }
+    return(
+        <Button variant="success" size="lg" style={{fontWeight: "bold"}}                 
+        >
+              {name}
+        </Button>
+    );
+  }
+  
+
 const Navigation = ({ data, children, bodyClass, isHome }) => {
     const site = data.allGhostSettings.edges[0].node;
 
@@ -24,6 +39,18 @@ const Navigation = ({ data, children, bodyClass, isHome }) => {
     const facebookUrl = site.facebook
         ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
         : null;
+    
+    //you can put the local function to check for user authentication
+    let itemContent = "Testing"
+    const myFunction = () => {
+        if (itemContent.startsWith("T")) {
+        //if the user is logged in disappear
+        return true;  // true -- disappear
+        }
+        //if the user is not logged in / sign up the login should show up
+        return false;  //false -- show up
+    }
+
 
     return <>
             <Helmet>
@@ -60,32 +87,53 @@ const Navigation = ({ data, children, bodyClass, isHome }) => {
                             </div>
                             <div className="site-mast-right">
                                 <a 
-                                    className="site-nav-item"  
-                                > 
-                                    <Button variant="success" size="lg">
-                                        <Link
-                                            className="site-nav-react-button"
-                                            to="/carousel"
-                                            style={{fontWeight: "bold"}}
-                                        >
-                                            My Account
-                                        </Link>
-                                    </Button>
-                                </a>
-                                <a 
-                                    className="site-nav-item"
+                                    className="site-nav-item" 
                                     target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Button variant="success" size="lg">
-                                        <Link
-                                            className="site-nav-react-button"
-                                            to="/404"
-                                            style={{fontWeight: "bold"}}
-                                        >
-                                            Log Out
-                                        </Link>
-                                    </Button>
+                                    rel="noopener noreferrer" 
+                                > 
+                                    <Link
+                                        className="site-nav-react-button"
+                                        //style={{fontWeight: "bold"}}                 
+                                        to="/login"
+                                    > 
+                                        <Item 
+                                            name="Login"
+                                            isRegistered={false} 
+                                        />
+                                    </Link>
+                                    {' '}
+                                    <Link
+                                        className="site-nav-react-button"
+                                        to="/register"
+                                        //style={{fontWeight: "bold"}}
+                                    > 
+                                        <Item 
+                                            isRegistered={myFunction} 
+                                            name="Sign Up" 
+                                        />
+                                    </Link>
+                                    {' '}
+                                    <Link
+                                        className="site-nav-react-button"
+                                        to="/cards"
+                                        //style={{fontWeight: "bold"}}
+                                    > 
+                                        <Item 
+                                            isRegistered={false} 
+                                            name="My Account" 
+                                        />
+                                    </Link>
+                                    {' '}
+                                   <Link
+                                        className="site-nav-react-button"
+                                        to="/404"
+                                        //style={{fontWeight: "bold"}}
+                                    > 
+                                        <Item 
+                                            isRegistered={false} 
+                                            name="Log Out" 
+                                        />
+                                    </Link>
                                 </a>
                             </div>
                         </div>
