@@ -15,6 +15,7 @@ let app = express();
 let indexRouter = require("./routes/index");
 let authRouter = require("./routes/auth");
 let jiffRouter = require("./routes/jiff");
+let auctionRouter = require("./routes/auctions");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,6 +45,7 @@ app.use(cors({
 app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/", jiffRouter);
+app.use("/", auctionRouter);
 
 app.use((req, res, next) => {
 	next(createError(404));

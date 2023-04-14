@@ -26,7 +26,7 @@ passport.use(new LocalStrategy((username, password, cb) => {
 
 passport.serializeUser((user, cb) => {
 	process.nextTick(() => {
-		cb(null, { id: user.id, username: user.username });
+		cb(null, { id: user.id, username: user.username, isSeller: user.account_type === 1 });
 	});
 })
 
@@ -50,7 +50,7 @@ router.post("/logout", (req, res, next) => {
 
 router.post("/register", (req, res, next) => {
 	let salt = crypto.randomBytes(16);
-	crypto.pbkdf2(req.body.password, salt, 310000, 32, "sha256", (err, hashedPassword) => {
+	crypto.pbkdf2(req.body.password, salt, 310000, 32, "sha256", function (err, hashedPassword) {
 		if (err) return next(err);
 		db.run("INSERT INTO users (username, hashed_password, salt) VALUES (?, ?, ?)", [
 			req.body.username,
