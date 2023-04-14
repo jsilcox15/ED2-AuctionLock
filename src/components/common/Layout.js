@@ -50,16 +50,26 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
     
     //const [modalShow, setModalShow] = React.useState(false);
 
-    //you can put the local function to check for user authentication
-    let itemContent = "Testing"
-    const myFunction = () => {
-        if (itemContent.startsWith("T")) {
-            //if the user is logged in disappear
+     //you can put the local function to check for user authentication
+        let itemContent = "Testing"
+
+        const notRegistered = () => {//if the user is not logged in / sign up the login should show up
+            if (itemContent.startsWith("T")) { //((authentic == true)) 
+            
             return true;  // true -- disappear
+            }
+            else{ //((authentic == null)) //(sign up / login appear)
+            return false; //appear if authentication is false
+            } 
         }
-        //if the user is not logged in / sign up the login should show up
-        return false;  //false -- show up
-    }
+        const Registered = () => {
+            if (itemContent.startsWith("T")) { //(authentic == false)
+            return true;  // true -- if the user is not logged in disappear
+            }
+            else{ //else it should appear
+            return false;
+            }
+        }
 
     return <>
         <Helmet>
@@ -106,7 +116,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         to="/login"
                                     > 
                                         <Item 
-                                            isRegistered={myFunction}
+                                            isRegistered={Registered}
                                             name="Login"
                                         />
                                     </Link>
@@ -117,7 +127,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         //style={{fontWeight: "bold"}}
                                     > 
                                         <Item 
-                                            isRegistered={myFunction} 
+                                            isRegistered={Registered} 
                                             name="Sign Up" 
                                         />
                                     </Link>
