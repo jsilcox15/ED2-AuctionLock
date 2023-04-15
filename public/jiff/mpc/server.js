@@ -1,4 +1,5 @@
 // Dependencies
+require("dotenv").config();
 var http = require('http');
 var JIFFServer = require('../../../jiff/lib/jiff-server.js');
 var mpc = require('./mpc.js');
@@ -39,14 +40,13 @@ var rl = readline.createInterface({
 
 jiff_instance.computationMaps.maxCount["auction-test"] = 100000;
 
-let computationClient = jiff_instance.compute("auction-test", {
-	crypto_provider: true,
-	// party_count: 4,
-});
+function performComputation() {
+	let computationClient = jiff_instance.compute("auction-test", {
+		crypto_provider: true,
+		// party_count: 4,
+	});
 
-computationClient.wait_for(mpc.JUDGE_IDS, () => {
-	console.log("Enter to perform computation");
-	rl.on("line", () => {
+	computationClient.wait_for(mpc.JUDGE_IDS, () => {
 		let party_count = 0;
 		let party_map = jiff_instance.socketMaps.socketId["auction-test"];
 		for (let id in party_map) {
@@ -72,9 +72,21 @@ computationClient.wait_for(mpc.JUDGE_IDS, () => {
 			});
 		});
 	});
-});
+}
 
 console.log(__dirname);
+
+let router = express.Router();
+
+router.post("/compute/:id", (req, res) => {
+	if (req.header("X-Api-Key") !== process.env.JIFF_KEY) return res.send("not allowed");
+
+	let computationId = req.params.id;
+	performComputation(computationId);
+	res.send("begin");
+});
+
+app.use('/control', router);
 app.use('/auction', express.static(path.join(__dirname, '..', 'mpc')));
 app.use('/dist', express.static(path.join(__dirname, '..', 'jiff', 'dist')));
 app.use('/lib/ext', express.static(path.join(__dirname, '..', 'jiff', 'lib', 'ext')));
