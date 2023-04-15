@@ -56,7 +56,7 @@ db.serialize(() => {
 		"admin",
 		crypto.pbkdf2Sync("adminpassword", salt, 310000, 32, "sha256"),
 		salt,
-		true
+		1
 	]);
 
 	db.run(`INSERT OR IGNORE INTO auctions

@@ -52,10 +52,11 @@ router.post("/register", (req, res, next) => {
 	let salt = crypto.randomBytes(16);
 	crypto.pbkdf2(req.body.password, salt, 310000, 32, "sha256", function (err, hashedPassword) {
 		if (err) return next(err);
-		db.run("INSERT INTO users (username, hashed_password, salt) VALUES (?, ?, ?)", [
+		db.run("INSERT INTO users (username, hashed_password, salt, account_type) VALUES (?, ?, ?)", [
 			req.body.username,
 			hashedPassword,
-			salt
+			salt,
+			req.body.account_type
 		], (err) => {
 			if (err) return next(err);
 			let user = {

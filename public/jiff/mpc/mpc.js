@@ -1,8 +1,14 @@
+let Axios = require("axios");
+
 (function(exports, node) {
   let saved_instance;
 
   exports.JUDGE_COUNT = 2;
   exports.JUDGE_IDS = Array.from({length: exports.JUDGE_COUNT}, (_, i) => i + 1);
+
+  async function authenticateToken(token) {
+    return true;
+  }
 
   exports.createBeforeInitializationHook = (checkToken) => {
     return [
@@ -12,10 +18,10 @@
           return params;
         }
 
-        // POC require token
-        if (msg.token !== checkToken) {
-          throw new Error("Incorrect token")
-        }
+        /*if (!(await authenticateToken(msg.token))) {
+          console.log("Rejected " + params.party_id);
+          throw new Error("Token rejected");
+        }*/
 
         console.log("allow " + params.party_id);
 
