@@ -5,8 +5,11 @@ import { Navigation } from "../components/common";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
-import { Form, FloatingLabel } from 'react-bootstrap';
-import { isNull } from "lodash";
+//import { Form, FloatingLabel } from 'react-bootstrap';
+//import { isNull } from "lodash";
+import { notRegistered, Registered } from "../pages/register.js";
+
+
 
 function Item({ name, isRegistered }) {
 
@@ -24,16 +27,29 @@ function Item({ name, isRegistered }) {
 export default function PackingList() {
 
   //you can put the local function to check for user authentication
-  let itemContent = "Testing"
-  const myFunction = () => {
-    if (itemContent.startsWith("T")) {
-      //if the user is logged in disappear
+  //let itemContent = "Testing"
+  console.log(localStorage.getItem("loggedIn"));
+
+
+  const notRegistered = () => {//if the user is not logged in / sign up the login should show up
+    if (localStorage.getItem("loggedIn") === "True") { //((authentic == true)) 
+      
       return true;  // true -- disappear
     }
-    //if the user is not logged in / sign up the login should show up
-    return false;  //false -- show up
+    else{ //((authentic == null)) //(sign up / login appear)
+      return false; //appear if authentication is false
+    } 
   }
 
+   const Registered = () => {
+    if (localStorage.getItem("loggedIn") !== "True") { //(authentic == false)
+      return true;  // true -- if the user is not logged in disappear
+    }
+    else{ //else it should appear
+      return false;
+    }
+  }
+  
   return (
     <Navigation>
       <div className="container">
@@ -47,7 +63,7 @@ export default function PackingList() {
             > 
               <Item 
                 name="Login"                 
-                isRegistered={myFunction} 
+                isRegistered={notRegistered} 
               />
             </Link>
             {' '}
@@ -57,7 +73,7 @@ export default function PackingList() {
                 style={{fontWeight: "bold"}}
             > 
               <Item 
-                isRegistered={myFunction} 
+                isRegistered={notRegistered} 
                 name="Sign Up" 
                 />
             </Link>
@@ -68,7 +84,7 @@ export default function PackingList() {
                 style={{fontWeight: "bold"}}
             > 
               <Item 
-                isRegistered={false} 
+                isRegistered={Registered} 
                 name="My Account" 
                 />
             </Link>
@@ -79,7 +95,7 @@ export default function PackingList() {
                 style={{fontWeight: "bold"}}
             > 
               <Item 
-                isRegistered={false} 
+                isRegistered={Registered} 
                 name="Log Out" 
                 />
             </Link>

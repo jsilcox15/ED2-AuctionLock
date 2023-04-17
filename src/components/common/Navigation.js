@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { Link, StaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Image, Button, Modal} from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuctionLogo from "../../images/ghost-icon.png";
@@ -28,6 +28,82 @@ function Item({ name, isRegistered }) {
         </Button>
     );
   }
+
+function PastBids(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h2 style={{textAlign: "center"}}> Entered Auctions</h2>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h2 style={{textAlign: "center"}}>Your Past Bids...</h2>
+            <Row><div></div></Row>
+            <div 
+                style={{
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    width: '100px', 
+                    height: '26px', 
+                    background: 'transparent'}}
+            >
+                <p></p>
+            </div>
+            <div
+                style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                     }}
+            >
+                    <p 
+                    style={{ fontSize: 18 }}>
+                        Huh!? Looks like you have not joined any auctions at this time...</p>
+            </div>
+            <div 
+                style={{
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    width: '100px', 
+                    height: '15px', 
+                    background: 'transparent'}}
+            >
+                <p></p>
+            </div>
+            <p 
+                style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    fontSize: 60 }}
+            >
+                &#128542;
+            </p>
+            <div
+                style={{ 
+                    float: 'center',
+                    textAlign: 'center'
+                }}
+            >
+            </div>
+                <div><p></p></div>
+            <Row><p></p></Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide} variant="success" size="lg" style={{fontWeight: "bold"}}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+}
+
   
 
 const Navigation = ({ data, children, bodyClass, isHome }) => {
@@ -50,6 +126,8 @@ const Navigation = ({ data, children, bodyClass, isHome }) => {
         //if the user is not logged in / sign up the login should show up
         return false;  //false -- show up
     }
+
+    const [modalShow, setModalShow] = React.useState(false);
 
 
     return <>
@@ -108,7 +186,7 @@ const Navigation = ({ data, children, bodyClass, isHome }) => {
                                         //style={{fontWeight: "bold"}}
                                     > 
                                         <Item 
-                                            isRegistered={myFunction} 
+                                            isRegistered={false} 
                                             name="Sign Up" 
                                         />
                                     </Link>
@@ -233,6 +311,19 @@ const Navigation = ({ data, children, bodyClass, isHome }) => {
                                     </Link>
                                 </Button>
                                 {' '}
+                                <Button variant="success" size="lg" onClick={() => setModalShow(true)}>
+                                    <Link
+                                        className="site-nav-react-button"
+                                        //to="/SellerFormList"
+                                    >
+                                        Past Bids
+                                    </Link>                
+                                </Button>
+                                <PastBids
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                />
+                                {' '}
                                 <Button variant="light" size="lg">
                                     <Link
                                         className="site-nav-react-button"
@@ -240,15 +331,6 @@ const Navigation = ({ data, children, bodyClass, isHome }) => {
                                         style={{ fontSize: 14 }}
                                     >
                                         &#128722;
-                                    </Link>
-                                </Button>
-                                {' '}
-                                <Button variant="primary" size="lg">
-                                    <Link
-                                        className="site-nav-react-button"
-                                        to="/SellerFormList"
-                                    >
-                                        Hide Exper
                                     </Link>
                                 </Button>
                             </div>

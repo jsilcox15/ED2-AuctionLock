@@ -26,7 +26,6 @@ const displayProduct = ({ userData }) => {
                         <h2 className="DP_cards__title">
                             {userData.title} 
                           </h2>
-                          <p>Stock: {userData.stock}</p>
                         </Card.Title>
                         <Card.Text>
                             <p>Category: {userData.category} </p>

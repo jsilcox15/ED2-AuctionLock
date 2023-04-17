@@ -60,10 +60,12 @@ import unknownImg from "../images/import-image.png";
             <Layout isHome={true}>
                 <div className="format">
                     <div class="search-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                        <form class="no-submit">
-                            <input class="no-submit" type="search" placeholder="Search Names and Categories..." onInput={filterCards} />
-                        </form>
-                    </div>
+                        <div > 
+                            <form class="no-submit" >
+                                <input class="no-submit" type="search" placeholder="Search Names and Categories..." onInput={filterCards} />
+                            </form>
+                        </div>
+                    </div> 
                     <div><p></p></div>
                     <div className="box_space">
                           {users.map((user, id) => (

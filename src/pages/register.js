@@ -9,11 +9,6 @@ import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-boots
 import Axios from "axios";
 
 const RegisterForm = () => { 
-  //const [user, setUser] = useState('');
-  //const [status, setStatus] = useState('');
-  //const [pass, setPass] = useState('');
-  //const [confirmPass, setConfirmPass] = useState('');
-
   const [userInfo, setUserInfo] = useState({
     user: "",
     status: "",
@@ -31,14 +26,18 @@ const RegisterForm = () => {
       Axios.post("http://localhost:9999/register", {
         username: userInfo.user,
         password: userInfo.password,
+        account_type: userInfo.status === "Seller"? 1 : 0,
       }, {
           withCredentials: true
       }).then((response) => {
+        localStorage.setItem("loggedIn", "True")
         console.log(response);
       });
 
       setUserInfo({ user: "", status: "", password: "", confirmPass: "" });
   };
+
+   
 
   return (
     <Layout>
