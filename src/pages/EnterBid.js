@@ -7,6 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
 //import { Form, FloatingLabel } from 'react-bootstrap';
 //import { isNull } from "lodash";
+import { notRegistered, Registered } from "../pages/register.js";
+
+
 
 function Item({ name, isRegistered }) {
 
@@ -24,10 +27,12 @@ function Item({ name, isRegistered }) {
 export default function PackingList() {
 
   //you can put the local function to check for user authentication
-  let itemContent = "Testing"
+  //let itemContent = "Testing"
+  console.log(localStorage.getItem("loggedIn"));
+
 
   const notRegistered = () => {//if the user is not logged in / sign up the login should show up
-    if (itemContent.startsWith("T")) { //((authentic == true)) 
+    if (localStorage.getItem("loggedIn") === "True") { //((authentic == true)) 
       
       return true;  // true -- disappear
     }
@@ -35,8 +40,9 @@ export default function PackingList() {
       return false; //appear if authentication is false
     } 
   }
-  const Registered = () => {
-    if (itemContent.startsWith("T")) { //(authentic == false)
+
+   const Registered = () => {
+    if (localStorage.getItem("loggedIn") !== "True") { //(authentic == false)
       return true;  // true -- if the user is not logged in disappear
     }
     else{ //else it should appear

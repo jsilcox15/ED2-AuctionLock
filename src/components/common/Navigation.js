@@ -186,7 +186,7 @@ const Navigation = ({ data, children, bodyClass, isHome }) => {
                                         //style={{fontWeight: "bold"}}
                                     > 
                                         <Item 
-                                            isRegistered={myFunction} 
+                                            isRegistered={false} 
                                             name="Sign Up" 
                                         />
                                     </Link>

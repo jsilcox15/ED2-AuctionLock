@@ -78,7 +78,7 @@ const BidPage = () => {
     const [results, setResults] = useState("");
 
     function pullJson() {
-        fetch('https://dummyjson.com/products/' + storeId)
+        fetch('http://localhost:9999/auctions/' + storeId)
         .then(response => response.json())
         .then(responseData => {
             setTitle(responseData.title);
