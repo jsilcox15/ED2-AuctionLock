@@ -37,14 +37,14 @@ import unknownImg from "../images/import-image.png";
         (async () => {
         let userData;
         try {
-            const response = await fetch("https://dummyjson.com/products");
+            const response = await fetch("http://localhost:9999/auctions");
             userData = await response.json();
         } catch (error) {
             console.log(error);
             userData = [];
         }
-        setAllUsers(userData.products);
-        setUsers(userData.products);
+        setAllUsers(userData.message);
+        setUsers(userData.message);
         })();
     }, []);
 

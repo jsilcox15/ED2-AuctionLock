@@ -46,6 +46,7 @@ app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/", jiffRouter);
 app.use("/", auctionRouter);
+app.use("/uploads", express.static("uploads"))
 
 app.use((req, res, next) => {
 	next(createError(404));

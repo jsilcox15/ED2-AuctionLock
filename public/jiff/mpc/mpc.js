@@ -1,27 +1,48 @@
-let Axios = require("axios");
-
 (function(exports, node) {
   let saved_instance;
 
   exports.JUDGE_COUNT = 2;
   exports.JUDGE_IDS = Array.from({length: exports.JUDGE_COUNT}, (_, i) => i + 1);
 
-  async function authenticateToken(token) {
-    return true;
+  async function authenticateToken(computationId, token, userId) {
+    try {
+      const response = await fetch("http://localhost:9999/jiff/checkToken/" + computationId, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userId: userId,
+          token: token
+        })
+      });
+      const json = await response.json();
+      console.log(json);
+      return json.message.authenticated === true;
+    } catch (e) {
+      return false;
+    }
   }
 
   exports.createBeforeInitializationHook = (checkToken) => {
     return [
-      (jiff, computation_id, msg, params) => {
+      async (jiff, computation_id, msg, params) => {
         // Let server through
         if (params.party_id === "s1") {
           return params;
         }
 
-        /*if (!(await authenticateToken(msg.token))) {
+        // wants to be judge
+        if (typeof params.party_id !== "undefined") {
+          if (msg.token === checkToken) {
+            return params;
+          }
+        }
+
+        if (!(await authenticateToken(computation_id, msg.token, msg.userId))) {
           console.log("Rejected " + params.party_id);
           throw new Error("Token rejected");
-        }*/
+        }
 
         console.log("allow " + params.party_id);
 

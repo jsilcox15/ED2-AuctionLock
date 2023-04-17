@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
 import { Layout } from "../components/common";
+import Axios from "axios";
 
 const LoginForm = () => {
   const [loginInfo, setloginInfo] = useState({
@@ -14,8 +15,20 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
       event.preventDefault();
-      
-      console.log(loginInfo);
+
+      Axios.post("http://localhost:9999/login/password", {
+        username: loginInfo.username,
+        password: loginInfo.password,
+      }, {
+        withCredentials: true
+      }).then((response) => {
+        Axios.get("http://localhost:9999/me", {
+          withCredentials: true
+        }).then((response) => {
+          console.log(response.data);
+          window.localStorage.setItem("userId", response.data.message.id);
+        });
+      });
 
       setloginInfo({ username: "", password: ""});
   };

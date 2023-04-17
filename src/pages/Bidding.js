@@ -26,22 +26,41 @@ const BidPage = () => {
 
     const mpc = window.mpc;
 
+    function getToken(computationId) {
+        return new Promise((res, rej) => {
+            Axios.get("http://localhost:9999/jiff/authenticate/" + computationId, {
+                withCredentials: true
+            }).then((response) => {
+                if (response.data.success) {
+                    res(response.data.message.token);
+                } else {
+                    rej();
+                }
+            }).catch(rej);
+        });
+    }
+
     function demoSubmit() {
         const COMPUTATION_ID = "auction-test";
+        getToken(COMPUTATION_ID).then((token) => {
+            console.log("token: " + token);
 
-        let hostname = "http://localhost:8080";
+            let hostname = "http://localhost:8080";
 
-        let options = {
-            initialization: {token: "asdf"},
-        };
+            let userId = parseInt(window.localStorage.getItem("userId"));
 
-        let jiff_instance = mpc.connect(hostname, COMPUTATION_ID, options);
+            let options = {
+                initialization: {userId: userId, token: token},
+            };
 
-        jiff_instance.wait_for(mpc.JUDGE_IDS.concat("s1"), () => {
-            console.log("I am ID: " + jiff_instance.id);
-            myPartyId = jiff_instance.id;
-            jiff_instance.share(parseInt(bidValue, 10), 2, mpc.JUDGE_IDS.concat("s1"), [ jiff_instance.id ]);
-            jiff_instance.disconnect(true, true);
+            let jiff_instance = mpc.connect(hostname, COMPUTATION_ID, options);
+
+            jiff_instance.wait_for(mpc.JUDGE_IDS.concat("s1"), () => {
+                console.log("I am ID: " + jiff_instance.id);
+                myPartyId = jiff_instance.id;
+                jiff_instance.share(parseInt(bidValue, 10), 2, mpc.JUDGE_IDS.concat("s1"), [ jiff_instance.id ]);
+                jiff_instance.disconnect(true, true);
+            });
         });
     }
 

@@ -36,6 +36,17 @@ passport.deserializeUser((user, cb) => {
 	});
 });
 
+router.get("/me", (req, res) => {
+	if (!req.user?.id) return res.send({
+		success: false
+	});
+
+	return res.send({
+		success: true,
+		message: req.user
+	});
+});
+
 router.post("/login/password", passport.authenticate("local", {
 	successRedirect: "/",
 	failureRedirect: "/login"

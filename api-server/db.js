@@ -47,6 +47,7 @@ db.serialize(() => {
 			user_id INTEGER,
 			computation_id TEXT,
 			token TEXT,
+			used INTEGER,
 			PRIMARY KEY (user_id, computation_id)
 		)
 	`);

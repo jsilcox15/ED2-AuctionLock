@@ -36,10 +36,12 @@ router.get("/jiff/compute/:id", (req, res) => {
 });
 
 router.get("/jiff/authenticate/:id", (req, res) => {
-	if (!req.user) return res.send({
-		success: false,
-		message: "Not logged in"
-	});
+	if (!req.user?.id) {
+		return res.send({
+			success: false,
+			message: "Not logged in"
+		});
+	}
 
 	let computationId = req.params.id;
 
@@ -47,14 +49,6 @@ router.get("/jiff/authenticate/:id", (req, res) => {
 		req.user.id,
 		computationId
 	], (err, row) => {
-		if (err) {
-			console.log(err);
-			return res.send({
-				success: false,
-				message: "Error"
-			});
-		}
-
 		if (row && row.token) {
 			return res.send({
 				success: true,
@@ -65,10 +59,11 @@ router.get("/jiff/authenticate/:id", (req, res) => {
 		}
 
 		let token = crypto.randomBytes(16).toString("hex");
-		db.run("INSERT INTO authorization VALUES (?, ?, ?)", [
+		db.run("INSERT INTO authorization VALUES (?, ?, ?, ?)", [
 			req.user.id,
 			computationId,
-			token
+			token,
+			0
 		], (err) => {
 			if (err) console.log(err);
 		});
@@ -79,6 +74,35 @@ router.get("/jiff/authenticate/:id", (req, res) => {
 			}
 		});
 	});
-})
+});
+
+router.post("/jiff/checkToken/:id", (req, res) => {
+	let computationId = req.params.id;
+	let userId = req.body.userId;
+	let token = req.body.token;
+
+	db.get("SELECT * FROM authorization WHERE user_id = ? AND computation_id = ? AND used = 0", [
+		userId,
+		computationId
+	], (err, row) => {
+		if (row && row.token === token) {
+			db.run("UPDATE authorization SET used = 1 WHERE user_Id = ? AND computation_id = ?", [userId, computationId]);
+
+			return res.send({
+				success: true,
+				message: {
+					authenticated: true
+				}
+			});
+		} else {
+			return res.send({
+				success: true,
+				message: {
+					authenticated: false
+				}
+			});
+		}
+	});
+});
 
 module.exports = router;

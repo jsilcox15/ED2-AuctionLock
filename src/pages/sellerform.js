@@ -11,6 +11,7 @@ import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-boots
 import { Form, FloatingLabel } from 'react-bootstrap';
 //import SellerFormList from "../pages/SellerFormList.js";
 import View from "../pages/View.js";
+import Axios from "axios";
 
 
 const FormX = () => {
@@ -51,7 +52,25 @@ const FormX = () => {
         e.preventDefault();
         console.log(formValues);
         console.log(inputFileRef?.current?.files);
-        setIsFormVisible(false);
+        console.log(thumbnail);
+
+        let epoch = Math.floor((+(new Date(formValues.endDate))) / 1000);
+        console.log(epoch);
+
+        let fd = new FormData();
+        fd.append("thumbnail", thumbnail[0]);
+        fd.append("title", formValues.title);
+        fd.append("description", formValues.description);
+        fd.append("brand", formValues.brand);
+        fd.append("price", 0);
+        fd.append("category", formValues.category);
+        fd.append("end_time", epoch);
+
+        Axios.post("http://localhost:9999/auctions/create", fd, {
+            withCredentials: true
+        }).then((e) => {
+            console.log(e);
+        });
     };
 
     return (

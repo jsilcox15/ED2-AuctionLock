@@ -1,6 +1,18 @@
 let express = require("express");
 let passport = require("passport");
 let ensureLogIn = require("connect-ensure-login").ensureLoggedIn;
+let multer = require("multer");
+
+let upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, "./uploads")
+        },
+        filename: (req, file, cb) => {
+            cb(null, file.originalname);
+        }
+    })
+});
 
 let ensureLoggedIn = ensureLogIn();
 
@@ -47,7 +59,7 @@ router.get("/auctions/:id", (req, res) => {
     });
 });
 
-router.post("/auctions/create", (req, res) => {
+router.post("/auctions/create", upload.fields([{ name: "thumbnail", maxCount: 1 }]), (req, res) => {
     if (!req.user?.isSeller) {
         res.send({
             success: false,
@@ -67,7 +79,7 @@ router.post("/auctions/create", (req, res) => {
         req.body.price,
         req.body.brand,
         req.body.category,
-        req.body.thumbnail,
+        req.files["thumbnail"][0].originalname,
         req.body.end_time,
         false,
         req.user.id
