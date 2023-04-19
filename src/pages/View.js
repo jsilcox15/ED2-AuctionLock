@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link } from "gatsby";
 //import { Layout } from "../components/common";
 
-import { Navigation } from "../components/common";
+import { Layout, Navigation } from "../components/common";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
@@ -14,7 +14,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 const View = ({ data }) => {
   return (
-    <Navigation>
+    <Layout>
         <div className="container">
         <div style={{textAlign: "center"}}>
             <h2> A Fresh Auction!? </h2> 
@@ -200,7 +200,7 @@ const View = ({ data }) => {
         </article>
         </div>
     </section>
-    </Navigation>
+    </Layout>
   );
 };
 

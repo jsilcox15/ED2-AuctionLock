@@ -11,7 +11,7 @@ import AuctionLogo from "../../images/ghost-icon.png";
 //import { Profile } from "../../pages/EnterBid.js";
 
 //import { Navigation } from ".";
-import config from "../../utils/siteConfig";
+import config, { backgroundColor } from "../../utils/siteConfig";
 
 // Styles
 import "../../styles/app.css";
@@ -25,13 +25,88 @@ import "../../styles/app.css";
  *
  */
 
-function Item({ name, isRegistered }) {
+function PastBids(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h2 style={{textAlign: "center"}}> Entered Auctions</h2>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h2 style={{textAlign: "center"}}>Your Past Bids...</h2>
+            <Row><div></div></Row>
+            <div 
+                style={{
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    width: '100px', 
+                    height: '26px', 
+                    background: 'transparent'}}
+            >
+                <p></p>
+            </div>
+            <div
+                style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                     }}
+            >
+                    <p 
+                    style={{ fontSize: 18 }}>
+                        Huh!? Looks like you have not joined any auctions at this time...</p>
+            </div>
+            <div 
+                style={{
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    width: '100px', 
+                    height: '15px', 
+                    background: 'transparent'}}
+            >
+                <p></p>
+            </div>
+            <p 
+                style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    fontSize: 60 }}
+            >
+                &#128542;
+            </p>
+            <div
+                style={{ 
+                    float: 'center',
+                    textAlign: 'center'
+                }}
+            >
+            </div>
+                <div><p></p></div>
+            <Row><p></p></Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide} variant="success" size="lg" style={{fontWeight: "bold"}}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+}
+
+function Item({ name, isRegistered, color}) {
 
     if (isRegistered) {
       return null;
     }
     return(
-        <Button variant="success" size="lg" style={{fontWeight: "bold"}}                 
+        <Button variant={color} size="lg" style={{fontWeight: "bold"}}                 
         >
               {name}
         </Button>
@@ -49,27 +124,27 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
         : null;
     
     //const [modalShow, setModalShow] = React.useState(false);
+     const [modalShow, setModalShow] = React.useState(false);
 
      //you can put the local function to check for user authentication
-        let itemContent = "Testing"
-
         const notRegistered = () => {//if the user is not logged in / sign up the login should show up
-            if (itemContent.startsWith("T")) { //((authentic == true)) 
-            
-            return true;  // true -- disappear
+            if (localStorage.getItem("loggedIn") === "True") { //((authentic == true)) 
+              
+              return true;  // true -- disappear
             }
             else{ //((authentic == null)) //(sign up / login appear)
-            return false; //appear if authentication is false
+              return false; //appear if authentication is false
             } 
-        }
-        const Registered = () => {
-            if (itemContent.startsWith("T")) { //(authentic == false)
-            return true;  // true -- if the user is not logged in disappear
+          }
+        
+           const Registered = () => {
+            if (localStorage.getItem("loggedIn") !== "True") { //(authentic == false)
+              return true;  // true -- if the user is not logged in disappear
             }
             else{ //else it should appear
-            return false;
+              return false;
             }
-        }
+          }
 
     return <>
         <Helmet>
@@ -116,8 +191,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         to="/login"
                                     > 
                                         <Item 
-                                            isRegistered={Registered}
+                                            isRegistered={notRegistered()}
                                             name="Login"
+                                            color="success"
                                         />
                                     </Link>
                                     {' '}
@@ -127,8 +203,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         //style={{fontWeight: "bold"}}
                                     > 
                                         <Item 
-                                            isRegistered={Registered} 
+                                            isRegistered={notRegistered()} 
                                             name="Sign Up" 
+                                            color="success"
                                         />
                                     </Link>
                                     {' '}
@@ -138,8 +215,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         //style={{fontWeight: "bold"}}
                                     > 
                                         <Item 
-                                            isRegistered={false} 
+                                            isRegistered={Registered()} 
                                             name="My Account" 
+                                            color="success"
                                         />
                                     </Link>
                                     {' '}
@@ -149,8 +227,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         //style={{fontWeight: "bold"}}
                                     > 
                                         <Item 
-                                            isRegistered={false} 
+                                            isRegistered={Registered()} 
                                             name="Log Out" 
+                                            color="success"
                                         />
                                     </Link>
                                 </a>
@@ -243,36 +322,49 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 </a>
                             </div>
                             <div className="site-nav-right">
-                                <Button variant="success" size="lg">
-                                    <Link
+                                <Link
                                         className="site-nav-react-button"
-                                        to="/SellerFormList"
-                                    >
-                                        Hide Exper
-                                    </Link>
-                                </Button>
-                            </div>
-                            {'  '}
-                            <div className="site-nav-right">
-                                <Button variant="success" size="lg">
-                                    <Link
+                                        to="/sellerform"
+                                        //style={{fontWeight: "bold"}}
+                                > 
+                                        <Item 
+                                            isRegistered={Registered()} 
+                                            name="Add Auction" 
+                                            color="success"
+                                        />
+                                </Link>
+                                {' '}
+                                <Link
                                         className="site-nav-react-button"
-                                        to="/EnterBid"
-                                    >
-                                        Conditional
-                                    </Link>
-                                </Button>
-                            </div>
-                            {'  '}
-                            <div className="site-nav-right">
-                                <Button variant="success" size="lg">
-                                    <Link
+                                        //style={{fontWeight: "bold"}}
+                                > 
+                                    <Button 
+                                        onClick={() => setModalShow(true)} 
+                                        style={{backgroundColor: 'transparent', border:'transparent'}}>
+                                        <Item 
+                                            isRegistered={Registered()} 
+                                            name="Past Bids" 
+                                            color="success"
+                                        />
+                                    </Button>
+                                </Link>
+                                <PastBids
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                />
+                                {' '}
+                                <Link
                                         className="site-nav-react-button"
-                                        to="/carousel"
-                                    >
-                                        Integrate
-                                    </Link>
-                                </Button>
+                                        to="/CheckOut"
+                                        style={{ fontSize: 14 }}  
+                                        //variant="light"                                      
+                                > 
+                                        <Item 
+                                            isRegistered={Registered()} 
+                                            name="&#128722;"
+                                            color="light"
+                                        />
+                                </Link>
                             </div>
                         </nav>
                     </div>

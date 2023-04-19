@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
 //import { Layout } from "../components/common";
-import { Navigation } from "../components/common";
+import { Layout, Navigation } from "../components/common";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
@@ -31,7 +31,7 @@ const CheckOut = () => {
     
 
     return (
-        <Navigation>
+        <Layout>
             <div className="container">
                 <h1 align="center"> Check Out &#128722;</h1>
 
@@ -158,7 +158,7 @@ const CheckOut = () => {
                     </Button>
                 </Form>
             </div>
-        </Navigation>
+        </Layout>
     );
 };
 

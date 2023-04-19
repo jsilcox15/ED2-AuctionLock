@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
 //import { Layout } from "../components/common";
-import { Navigation } from "../components/common";
+import { Layout, Navigation } from "../components/common";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
 //import { Form, FloatingLabel } from 'react-bootstrap';
 //import { isNull } from "lodash";
-import { notRegistered, Registered } from "../pages/register.js";
+import { RegisterForm } from "../pages/register.js";
 
 
 
-function Item({ name, isRegistered }) {
+function Item({ name, isRegistered, color}) {
 
   if (isRegistered) {
     return null;
   }
   return(
-      <Button variant="success" size="lg" >
+      <Button variant={color} size="lg" >
             {name}
       </Button>
   );
@@ -28,30 +28,10 @@ export default function PackingList() {
 
   //you can put the local function to check for user authentication
   //let itemContent = "Testing"
-  console.log(localStorage.getItem("loggedIn"));
 
-
-  const notRegistered = () => {//if the user is not logged in / sign up the login should show up
-    if (localStorage.getItem("loggedIn") === "True") { //((authentic == true)) 
-      
-      return true;  // true -- disappear
-    }
-    else{ //((authentic == null)) //(sign up / login appear)
-      return false; //appear if authentication is false
-    } 
-  }
-
-   const Registered = () => {
-    if (localStorage.getItem("loggedIn") !== "True") { //(authentic == false)
-      return true;  // true -- if the user is not logged in disappear
-    }
-    else{ //else it should appear
-      return false;
-    }
-  }
   
   return (
-    <Navigation>
+    <Layout>
       <div className="container">
         <section>
           <h1>Testing List of Buttons</h1>
@@ -63,7 +43,8 @@ export default function PackingList() {
             > 
               <Item 
                 name="Login"                 
-                isRegistered={notRegistered} 
+                isRegistered={true} 
+                color="success"
               />
             </Link>
             {' '}
@@ -73,8 +54,9 @@ export default function PackingList() {
                 style={{fontWeight: "bold"}}
             > 
               <Item 
-                isRegistered={notRegistered} 
+                isRegistered={false} 
                 name="Sign Up" 
+                color="success"
                 />
             </Link>
             {' '}
@@ -84,8 +66,9 @@ export default function PackingList() {
                 style={{fontWeight: "bold"}}
             > 
               <Item 
-                isRegistered={Registered} 
+                isRegistered={true} 
                 name="My Account" 
+                color="light"
                 />
             </Link>
             {' '}
@@ -95,13 +78,14 @@ export default function PackingList() {
                 style={{fontWeight: "bold"}}
             > 
               <Item 
-                isRegistered={Registered} 
+                isRegistered={false} 
                 name="Log Out" 
+                color="light"
                 />
             </Link>
           </ul>
         </section>
       </div>
-    </Navigation>
+    </Layout>
   );
 }

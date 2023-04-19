@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "gatsby";
 //import { Layout } from "../components/common";
 
-import { Navigation } from "../components/common";
+import { Layout, Navigation } from "../components/common";
 
 
 import { Form, FloatingLabel } from 'react-bootstrap';
@@ -12,7 +12,7 @@ import { Container, Row, Col, Card, Image, Button, ListGroup, Modal } from 'reac
 import Axios from "axios";
 
 const UserProfile = () => (
-    <Navigation>
+    <Layout>
       <section className="vh-100" style={{ backgroundColor: '#0000' }}>
         <Container className="py-5 h-100">
             <Row className="justify-content-center align-items-center h-100">
@@ -69,7 +69,7 @@ const UserProfile = () => (
             </Row>
         </Container>
     </section>
-    </Navigation>
+    </Layout>
 );
 
 export default UserProfile;

@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 //import { Layout } from "../components/common";
 import { Form, FloatingLabel } from 'react-bootstrap';
 
-import { Navigation } from "../components/common";
+import { Layout, Navigation } from "../components/common";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
@@ -50,7 +50,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <Navigation>
+    <Layout>
         <div className="login-form">
             <div className="form-box solid">
             <form className="App">
@@ -119,7 +119,7 @@ const RegisterForm = () => {
             </form>
             </div>
         </div>
-    </Navigation>
+    </Layout>
   );
 };
 

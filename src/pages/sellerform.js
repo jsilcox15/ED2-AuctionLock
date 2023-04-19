@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import { Link } from "gatsby";
 
 //import { Layout } from "../components/common";
-import { Navigation } from "../components/common";
+import { Layout, Navigation } from "../components/common";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
@@ -76,7 +76,7 @@ const FormX = () => {
     return (
     <>
       {isFormVisible ? (
-	<Navigation>
+	<Layout>
 	  <div className="container">
         <Form onSubmit={handleSubmit}>
             <h1 style={{ textAlign:'center' }}>Seller Form</h1>
@@ -341,7 +341,7 @@ const FormX = () => {
 
             </Form>
 	    </div>
-        </Navigation>
+        </Layout>
       ) : (
         <View data={formValues} />
       )}

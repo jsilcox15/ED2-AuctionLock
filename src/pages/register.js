@@ -5,6 +5,8 @@ import { Layout } from "../components/common";
 import { Form, FloatingLabel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Image, Button, ListGroup } from 'react-bootstrap';
+import { BidPages } from "../pages/bidPages.js";
+
 
 import Axios from "axios";
 
@@ -15,6 +17,8 @@ const RegisterForm = () => {
     password: "",
     confirmPass: "",
   });
+
+  const [logIn, setlogIn] = useState();
 
   const handleChange = (event) => {
       setUserInfo({...userInfo, [event.target.name]: event.target.value });
@@ -30,14 +34,17 @@ const RegisterForm = () => {
       }, {
           withCredentials: true
       }).then((response) => {
-        localStorage.setItem("loggedIn", "True")
+        window.localStorage.setItem("loggedIn", "True")
+        
+        let loggedIn = window.localStorage.getItem("loggedIn")
+        
+        console.log(loggedIn);
         console.log(response);
       });
 
       setUserInfo({ user: "", status: "", password: "", confirmPass: "" });
   };
 
-   
 
   return (
     <Layout>
