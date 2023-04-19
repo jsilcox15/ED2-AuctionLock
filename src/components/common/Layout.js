@@ -221,6 +221,18 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         />
                                     </Link>
                                     {' '}
+                                    <Link
+                                            className="site-nav-react-button"
+                                            to="/CheckOut"
+                                            style={{ fontSize: 14 }}  
+                                    > 
+                                            <Item 
+                                                isRegistered={Registered()} 
+                                                name="&#128722;"
+                                                color="light"
+                                            />
+                                    </Link>
+                                    {' '}
                                    <Link
                                         className="site-nav-react-button"
                                         to="/404"
@@ -352,19 +364,6 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     show={modalShow}
                                     onHide={() => setModalShow(false)}
                                 />
-                                {' '}
-                                <Link
-                                        className="site-nav-react-button"
-                                        to="/CheckOut"
-                                        style={{ fontSize: 14 }}  
-                                        //variant="light"                                      
-                                > 
-                                        <Item 
-                                            isRegistered={Registered()} 
-                                            name="&#128722;"
-                                            color="light"
-                                        />
-                                </Link>
                             </div>
                         </nav>
                     </div>
