@@ -8,7 +8,7 @@ import { Container, Row, Col, Card, Image, Button, ListGroup, Modal, Form, Float
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AuctionLogo from "../../images/ghost-icon.png";
-//import { Profile } from "../../pages/EnterBid.js";
+//import { RedirectHome } from "../../pages/EnterBid.js";
 
 //import { Navigation } from ".";
 import config, { backgroundColor } from "../../utils/siteConfig";
