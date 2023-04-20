@@ -66,6 +66,11 @@ const FormX = () => {
         fd.append("category", formValues.category);
         fd.append("end_time", epoch);
 
+        let images = [];
+        for (let x of image) {
+            fd.append("gallery", x)
+        }
+
         Axios.post("http://localhost:9999/auctions/create", fd, {
             withCredentials: true
         }).then((e) => {

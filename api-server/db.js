@@ -73,6 +73,20 @@ db.serialize(() => {
 		0,
 		0
 	]);
+
+	db.run(`INSERT OR IGNORE INTO auctions
+		(title, description, price, brand, category, thumbnail, end_time, complete, seller)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
+		"ENDED iPhone 9",
+		"An apple mobile which is nothing like apple",
+		549,
+		"Apple",
+		"smartphones",
+		"https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+		1682972120,
+		1,
+		0
+	]);
 });
 
 module.exports = db;

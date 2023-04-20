@@ -100,11 +100,11 @@ const BidPage = () => {
         fetch('http://localhost:9999/auctions/' + storeId)
         .then(response => response.json())
         .then(responseData => {
-            setTitle(responseData.title);
-            setDesc(responseData.description);
-            setCategory(responseData.category);
-            setBrand(responseData.brand);
-            setImages(responseData.images);
+            setTitle(responseData.message.title);
+            setDesc(responseData.message.description);
+            setCategory(responseData.message.category);
+            setBrand(responseData.message.brand);
+            setImages(responseData.message.images);
             //console.log(responseData.images)
             //console.log(setImages(responseData.images));
             //console.log(Array.isArray(responseData.images)); //renders true (is array)
@@ -153,7 +153,7 @@ const BidPage = () => {
                                                 {
                                                     images.map((image, index) => (
                                                         <div key={index}>
-                                                        <img className="Img_sl" src={image} alt={index} />
+                                                        <img className="Img_sl" src={"http://localhost:9999/uploads/" + image} alt={index} />
                                                         </div>
                                                     ))
                                                 }

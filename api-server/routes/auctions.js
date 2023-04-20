@@ -21,7 +21,7 @@ let db = require("../db");
 let router = express.Router();
 
 router.get("/auctions", (req, res) => {
-    db.all("SELECT * FROM auctions WHERE complete = FALSE", [], (err, data) => {
+    db.all("SELECT * FROM auctions", [], (err, data) => {
         if (err) {
             console.log(err);
             res.send({
@@ -51,15 +51,26 @@ router.get("/auctions/:id", (req, res) => {
                 message: null
             });
         } else {
-            res.send({
-                success: true,
-                message: data
+            db.all("SELECT * FROM images WHERE id = ?", [req.params.id], (err, imgData) => {
+                if (err) {
+                    console.log(err);
+                    res.send({
+                        success: false,
+                        message: "Error while fetching auction"
+                    });
+                } else {
+                    data.images = imgData.map((x) => x.url);
+                    res.send({
+                        success: true,
+                        message: data
+                    });
+                }
             });
         }
     });
 });
 
-router.post("/auctions/create", upload.fields([{ name: "thumbnail", maxCount: 1 }]), (req, res) => {
+router.post("/auctions/create", upload.fields([{ name: "thumbnail", maxCount: 1 }, { name: "gallery", maxCount: 5 }]), (req, res) => {
     if (!req.user?.isSeller) {
         res.send({
             success: false,
@@ -91,13 +102,21 @@ router.post("/auctions/create", upload.fields([{ name: "thumbnail", maxCount: 1 
                 message: "Something went wrong while creating your auction"
             });
         } else {
-            console.log(this.lastID);
+            let auctionId = this.lastID;
             res.send({
                 success: true,
                 message: {
-                    id: this.lastID
+                    id: auctionId
                 }
             });
+
+            console.log(auctionId, req.files);
+
+            for (let image of req.files["gallery"]) {
+                db.run(`
+                    INSERT INTO images VALUES (?, ?)
+                `, [auctionId, image.originalname]);
+            }
         }
     });
 });
