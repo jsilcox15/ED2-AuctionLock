@@ -15,6 +15,8 @@ import config, { backgroundColor } from "../../utils/siteConfig";
 
 // Styles
 import "../../styles/app.css";
+import Axios from "axios";
+
 
 /**
  * Main layout component
@@ -100,6 +102,23 @@ function PastBids(props) {
     );
 }
 
+function logOut() {
+    function MyFunction() {
+        window.location.replace("/")
+    }
+
+    Axios.post("http://localhost:9999/logout", {}, {
+    withCredentials: true
+    }).then((response) => {
+        window.localStorage.removeItem("loggedIn");
+        window.localStorage.removeItem("userId");
+        MyFunction()
+    });
+}
+
+console.log(window.localStorage.getItem("userId"))
+
+
 function Item({ name, isRegistered, color}) {
 
     if (isRegistered) {
@@ -128,7 +147,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
 
      //you can put the local function to check for user authentication
         const notRegistered = () => {//if the user is not logged in / sign up the login should show up
-            if (localStorage.getItem("loggedIn") === "True") { //((authentic == true)) 
+            if (localStorage.getItem("loggedIn") === "true") { //((authentic == true)) 
               
               return true;  // true -- disappear
             }
@@ -138,7 +157,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
           }
         
            const Registered = () => {
-            if (localStorage.getItem("loggedIn") !== "True") { //(authentic == false)
+            if (localStorage.getItem("loggedIn") !== "true") { //(authentic == false)
               return true;  // true -- if the user is not logged in disappear
             }
             else{ //else it should appear
@@ -235,14 +254,18 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     {' '}
                                    <Link
                                         className="site-nav-react-button"
-                                        to="/404"
+                                        //to="/"
                                         //style={{fontWeight: "bold"}}
                                     > 
-                                        <Item 
-                                            isRegistered={Registered()} 
-                                            name="Log Out" 
-                                            color="success"
-                                        />
+                                        <Button 
+                                            onClick={() => {logOut()}} 
+                                            style={{backgroundColor: 'transparent', border:'transparent'}}>
+                                            <Item 
+                                                isRegistered={Registered()} 
+                                                name="Log Out" 
+                                                color="success"
+                                            />
+                                        </Button>
                                     </Link>
                                 </a>
                             </div>

@@ -18,11 +18,13 @@ const RegisterForm = () => {
     confirmPass: "",
   });
 
-  const [logIn, setlogIn] = useState();
-
   const handleChange = (event) => {
       setUserInfo({...userInfo, [event.target.name]: event.target.value });
   };
+
+  function MyFunction() {
+    window.location.replace("/")
+  }
 
   const handleSubmit = (event) => {
       event.preventDefault();
@@ -34,12 +36,11 @@ const RegisterForm = () => {
       }, {
           withCredentials: true
       }).then((response) => {
-        window.localStorage.setItem("loggedIn", "True")
-        
-        let loggedIn = window.localStorage.getItem("loggedIn")
-        
-        console.log(loggedIn);
+        window.localStorage.setItem("loggedIn", "true")
+                
         console.log(response);
+
+        MyFunction()
       });
 
       setUserInfo({ user: "", status: "", password: "", confirmPass: "" });

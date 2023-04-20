@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Link } from "gatsby";
 import { Layout } from "../components/common";
 import Axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [loginInfo, setloginInfo] = useState({
@@ -12,6 +13,10 @@ const LoginForm = () => {
   const handleChange = (event) => {
       setloginInfo({...loginInfo, [event.target.name]: event.target.value });
   };
+
+  function MyFunction() {
+    window.location.replace("/")
+  }
 
   const handleSubmit = (event) => {
       event.preventDefault();
@@ -25,8 +30,14 @@ const LoginForm = () => {
         Axios.get("http://localhost:9999/me", {
           withCredentials: true
         }).then((response) => {
+          window.localStorage.setItem("loggedIn", "true")
           console.log(response.data);
+
           window.localStorage.setItem("userId", response.data.message.id);
+          window.localStorage.setItem("username", response.data.message.username);
+          window.localStorage.setItem("status", response.data.message.isSeller);
+
+          MyFunction()
         });
       });
 
