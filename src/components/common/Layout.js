@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { Link, StaticQuery, graphql } from "gatsby";
@@ -142,10 +142,41 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
         ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
         : null;
     
-    //const [modalShow, setModalShow] = React.useState(false);
      const [modalShow, setModalShow] = React.useState(false);
 
-     //you can put the local function to check for user authentication
+
+        function SellerStatus() { //if logged in and ifseller is true return false
+            if (localStorage.getItem("loggedIn") === "true") { //if((logged == true))
+
+                if (window.localStorage.getItem("status") === "true") { //if((status == true))
+                    console.log("testing false")
+                    return false; //appear on the page
+                }
+                else{
+                    return true;
+                } 
+            }
+            else{ //if not logged in return true
+                return true;
+            } 
+        }
+
+        function BuyerStatus() { //if logged in and ifseller is false return false
+            if (localStorage.getItem("loggedIn") === "true") { //if((logged == true))
+
+                if (window.localStorage.getItem("status") !== "true") { //if((status == true))
+                    console.log(window.localStorage.getItem("status"))
+                    return false; //appear on the page
+                }
+                else{
+                    return true;
+                } 
+            }
+            else{ //if not logged in return true
+                return true;
+            } 
+        }
+
         const notRegistered = () => {//if the user is not logged in / sign up the login should show up
             if (localStorage.getItem("loggedIn") === "true") { //((authentic == true)) 
               
@@ -155,7 +186,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
               return false; //appear if authentication is false
             } 
           }
-        
+
            const Registered = () => {
             if (localStorage.getItem("loggedIn") !== "true") { //(authentic == false)
               return true;  // true -- if the user is not logged in disappear
@@ -246,7 +277,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                             style={{ fontSize: 14 }}  
                                     > 
                                             <Item 
-                                                isRegistered={Registered()} 
+                                                isRegistered={BuyerStatus()} 
                                                 name="&#128722;"
                                                 color="light"
                                             />
@@ -363,7 +394,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         //style={{fontWeight: "bold"}}
                                 > 
                                         <Item 
-                                            isRegistered={Registered()} 
+                                            isRegistered={SellerStatus()} 
                                             name="Add Auction" 
                                             color="success"
                                         />
@@ -377,7 +408,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                         onClick={() => setModalShow(true)} 
                                         style={{backgroundColor: 'transparent', border:'transparent'}}>
                                         <Item 
-                                            isRegistered={Registered()} 
+                                            isRegistered={BuyerStatus()} 
                                             name="Past Bids" 
                                             color="success"
                                         />

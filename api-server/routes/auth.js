@@ -68,7 +68,7 @@ router.post("/register", (req, res, next) => {
 			hashedPassword,
 			salt,
 			req.body.account_type
-		], (err) => {
+		], function(err) {
 			if (err) return next(err);
 			let user = {
 				id: this.lastID,

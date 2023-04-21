@@ -23,7 +23,8 @@ const FormX = () => {
         condition: "",
         category: "",
         security: "",
-        endDate: ""
+        endDate: "",
+        endTime: "",
     });
 
     const [image, setImage] = useState([])
@@ -46,6 +47,8 @@ const FormX = () => {
     };
 
     const dateInputRef = useRef(null);
+    const timeInputRef = useRef(null);
+
 
 
     const handleSubmit = (e) => {
@@ -161,6 +164,25 @@ const FormX = () => {
                         />
                         <Form.Text>
                             Choose the date you want your auction to end. Required.
+                        </Form.Text>
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="endTime">
+                    <Form.Label 
+                        style={{ color: 'black', textAlign:'left' }}
+                    > 
+                        Selected End Time: {formValues.endTime}
+                    </Form.Label>
+                        <Form.Control 
+                            type="time" 
+                            name="endTime" 
+                            size="lg"
+                            value={formValues.endTime}
+                            onChange={handleChange}
+                            ref={timeInputRef}
+                        />
+                        <Form.Text>
+                            Choose the time you want your auction to end. Required.
                         </Form.Text>
                 </Form.Group>
             </Row>

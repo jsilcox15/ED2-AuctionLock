@@ -36,11 +36,19 @@ const RegisterForm = () => {
       }, {
           withCredentials: true
       }).then((response) => {
-        window.localStorage.setItem("loggedIn", "true")
-                
-        console.log(response);
+        Axios.get("http://localhost:9999/me", {
+          withCredentials: true
+        }).then((response) => {
+          window.localStorage.setItem("loggedIn", "true")
+          console.log(response.data);
 
-        MyFunction()
+          window.localStorage.setItem("userId", response.data.message.id);
+          window.localStorage.setItem("username", response.data.message.username);
+          window.localStorage.setItem("status", response.data.message.isSeller);
+
+
+          MyFunction()
+        });
       });
 
       setUserInfo({ user: "", status: "", password: "", confirmPass: "" });

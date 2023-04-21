@@ -13,7 +13,7 @@ const displayProduct = ({ userData }) => {
       <Link to ={"/Bidding?id=" + userData.id} style={{ textDecoration: 'none', color: 'black'}}>
         <div className="DP_cards">
                     <Card 
-                      style={{border: "1px solid gray", height: 460, width: 230 }}
+                      style={{border: "1px solid gray", height: 500, width: 230 }}
                     >
                     <Card.Header style={{textAlign: "center"}}>Hot Bids &#128293;</Card.Header>
                     <Card.Img 

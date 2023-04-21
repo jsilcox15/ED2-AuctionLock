@@ -13,7 +13,6 @@ import Axios from "axios";
 
 const UserProfile = () => {
 
-    console.log(window.localStorage.getItem("userId"))
     function status() {
         if (window.localStorage.getItem("status") === "true") { //((ifSeller == true)) 
             return "Seller";  
