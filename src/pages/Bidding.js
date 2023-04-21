@@ -94,6 +94,9 @@ const BidPage = () => {
     const [brand, setBrand] = useState(); 
     const [images, setImages] = useState([]);
 
+    const [date, setDate] = useState(); 
+
+
     const [results, setResults] = useState("");
 
     function pullJson() {
@@ -103,6 +106,10 @@ const BidPage = () => {
             setTitle(responseData.message.title);
             setDesc(responseData.message.description);
             setCategory(responseData.message.category);
+            
+            setDate(responseData.message.endDate);
+            console.log(responseData.message.endDate);
+
             setBrand(responseData.message.brand);
             setImages(responseData.message.images);
             //console.log(responseData.images)
@@ -119,7 +126,7 @@ const BidPage = () => {
     
     useEffect(() => {
         pullJson()
-    }, [])  //{title} //{desc} //{brand} //{imagess} //{category}
+    }, [])  //{title} //{desc} //{brand} //{imagess} //{category} //{date}
 
   return (
     <Layout>
@@ -131,7 +138,7 @@ const BidPage = () => {
     <section class="section-content padding-y bg">
         <div class="container">
         <Card style={{height: 650 }}>
-            <Card.Header>&#128337; Ends </Card.Header>
+            <Card.Header>&#128337; Ends: {date}</Card.Header>
             <Card.Body>
                     <Row>
                         <Col md={6}>
@@ -220,7 +227,7 @@ const BidPage = () => {
 
         <article class="mt-5">
             <Card>
-                <Card.Header>&#128337; Ends </Card.Header>
+                <Card.Header>&#128337; Ends: {date} </Card.Header>
                 <Card.Body>
                     <h2>Description: </h2>
                         <Container>
