@@ -15,6 +15,11 @@ import Axios from "axios";
 
 
 const FormX = () => {
+
+    function MyFunction() {
+        window.location.replace("/")
+    }
+
     const [formValues, setFormValues] = useState({
         title: "",
         manufacturer: "",
@@ -67,6 +72,7 @@ const FormX = () => {
         fd.append("brand", formValues.brand);
         fd.append("price", 0);
         fd.append("category", formValues.category);
+        fd.append("condition", formValues.condition);
         fd.append("end_time", epoch);
 
         let images = [];
@@ -78,6 +84,7 @@ const FormX = () => {
             withCredentials: true
         }).then((e) => {
             console.log(e);
+            //MyFunction();
         });
     };
 

@@ -94,6 +94,9 @@ const BidPage = () => {
     const [brand, setBrand] = useState(); 
     const [images, setImages] = useState([]);
 
+    const [condition, setCondition] = useState();
+
+
     const [date, setDate] = useState(); 
 
 
@@ -106,7 +109,9 @@ const BidPage = () => {
             setTitle(responseData.message.title);
             setDesc(responseData.message.description);
             setCategory(responseData.message.category);
-            
+
+            setCondition(responseData.message.condition);
+
             setDate(responseData.message.endDate);
             console.log(responseData.message.endDate);
 
@@ -273,7 +278,7 @@ const BidPage = () => {
                                     <Container>
                                         <Col md={11} style={{ color: 'black'}}>
                                             <dd style={{ color: 'black', textAlign:'center' }}> 
-                                                <li>GOOD</li> 
+                                                <li>{condition}</li> 
                                             </dd>
                                         </Col>
                                     </Container>
