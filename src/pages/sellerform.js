@@ -80,9 +80,7 @@ const FormX = () => {
             withCredentials: true
         }).then((e) => {
             console.log(e);
-            //RedirectFunction();
-            //window.location.replace("/Bidding/?id="+ e.message.id)
-            window.location.replace("/")
+            window.location.replace("/Bidding/?id=" + e.data.message.id);
         });
     };
 
