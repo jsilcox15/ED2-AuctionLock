@@ -82,14 +82,17 @@ router.post("/auctions/create", upload.fields([{ name: "thumbnail", maxCount: 1 
     db.run(`
         INSERT INTO auctions
         (title, description, price, brand, category,
+        manufacturer, condition,
         thumbnail, end_time, complete, seller)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `, [
         req.body.title,
         req.body.description,
         req.body.price,
         req.body.brand,
         req.body.category,
+        req.body.manufacturer,
+        req.body.condition,
         req.files["thumbnail"][0].originalname,
         req.body.end_time,
         false,

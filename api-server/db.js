@@ -28,6 +28,8 @@ db.serialize(() => {
 			brand TEXT,
 			category TEXT,
 			thumbnail TEXT,
+			manufacturer TEXT,
+			condition TEXT,
 			end_time INTEGER NOT NULL,
 			complete INTEGER NOT NULL,
 			seller INTEGER NOT NULL
@@ -61,8 +63,8 @@ db.serialize(() => {
 	]);
 
 	db.run(`INSERT OR IGNORE INTO auctions
-		(title, description, price, brand, category, thumbnail, end_time, complete, seller)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
+		(title, description, price, brand, category, thumbnail, end_time, complete, seller, manufacturer, condition)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
 		"iPhone 9",
 		"An apple mobile which is nothing like apple",
 		549,
@@ -71,12 +73,14 @@ db.serialize(() => {
 		"https://i.dummyjson.com/data/products/1/thumbnail.jpg",
 		1682972120,
 		0,
-		0
+		0,
+		"Apple (manufacturer)",
+		"Brand new",
 	]);
 
 	db.run(`INSERT OR IGNORE INTO auctions
-		(title, description, price, brand, category, thumbnail, end_time, complete, seller)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
+		(title, description, price, brand, category, thumbnail, end_time, complete, seller, manufacturer, condition)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
 		"ENDED iPhone 9",
 		"An apple mobile which is nothing like apple",
 		549,
@@ -85,7 +89,9 @@ db.serialize(() => {
 		"https://i.dummyjson.com/data/products/1/thumbnail.jpg",
 		1682972120,
 		1,
-		0
+		0,
+		"Apple (manufacturer)",
+		"Brand new"
 	]);
 });
 
