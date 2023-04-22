@@ -96,10 +96,9 @@ const BidPage = () => {
 
     const [condition, setCondition] = useState();
 
+    const [manufacturer, setManufacturer] = useState();
 
     const [date, setDate] = useState(); 
-
-
     const [results, setResults] = useState("");
 
     function pullJson() {
@@ -114,6 +113,8 @@ const BidPage = () => {
 
             setDate(responseData.message.endDate);
             console.log(responseData.message.endDate);
+
+            setManufacturer(responseData.message.manufacturer);
 
             setBrand(responseData.message.brand);
             setImages(responseData.message.images);
@@ -250,7 +251,7 @@ const BidPage = () => {
                                     <Container>
                                         <Col md={11} style={{ color: 'black'}}>
                                             <dd style={{ color: 'black', textAlign:'center' }}> 
-                                                <li>{brand}</li> 
+                                                <li>{manufacturer}</li> 
                                             </dd>
                                         </Col>
                                     </Container>

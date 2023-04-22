@@ -4,9 +4,7 @@ import { Layout } from '../components/common';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
-
-function Cars() {
+function HomeAcc() {
 
     const [allCards, setAllCards] = useState([]);
     const [cards, setCards] = useState([]);
@@ -22,7 +20,7 @@ function Cars() {
             userData = [];
         }
         setAllCards(userData.message);
-        setCards(userData.message.filter(e => e.category === "Cars & Parts"));
+        setCards(userData.message.filter(e => e.category === "Home & Accessories"));
         //setCards(userData.message);
         })();
     }, []);
@@ -39,4 +37,4 @@ function Cars() {
         </div></Layout>
     );
 }
-export default Cars;
+export default HomeAcc;

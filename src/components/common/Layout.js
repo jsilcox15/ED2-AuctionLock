@@ -5,6 +5,8 @@ import { Link, StaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Container, Row, Col, Card, Image, Button, ListGroup, Modal, Form, FloatingLabel } from 'react-bootstrap';
 
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AuctionLogo from "../../images/ghost-icon.png";
@@ -340,7 +342,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     <Link
                                          className="site-nav-item"
                                         variant="outline-success"
-                                        to="/404"
+                                        to="/Fashion"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -353,7 +355,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     <Link
                                          className="site-nav-item"
                                         variant="outline-success"
-                                        to="/404"
+                                        to="/CarTrial"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -366,7 +368,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     <Link
                                          className="site-nav-item"
                                         variant="outline-success"
-                                        to="/404"
+                                        to="/Electronics"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -377,9 +379,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     className="site-nav-item"  
                                 >
                                     <Link
-                                         className="site-nav-item"
+                                        className="site-nav-item"
                                         variant="outline-success"
-                                        to="/404"
+                                        to="/Home_Acc"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >

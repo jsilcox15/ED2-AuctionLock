@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-function Cars() {
+function Fashion() {
 
     const [allCards, setAllCards] = useState([]);
     const [cards, setCards] = useState([]);
@@ -22,7 +22,7 @@ function Cars() {
             userData = [];
         }
         setAllCards(userData.message);
-        setCards(userData.message.filter(e => e.category === "Cars & Parts"));
+        setCards(userData.message.filter(e => e.category === "Clothing, Shoes, & Fashion"));
         //setCards(userData.message);
         })();
     }, []);
@@ -39,4 +39,4 @@ function Cars() {
         </div></Layout>
     );
 }
-export default Cars;
+export default Fashion;

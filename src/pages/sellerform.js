@@ -73,6 +73,8 @@ const FormX = () => {
         fd.append("price", 0);
         fd.append("category", formValues.category);
         fd.append("condition", formValues.condition);
+        fd.append("manufacturer", formValues.manufacturer);
+
         fd.append("end_time", epoch);
 
         let images = [];
