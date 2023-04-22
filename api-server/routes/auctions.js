@@ -115,10 +115,12 @@ router.post("/auctions/create", upload.fields([{ name: "thumbnail", maxCount: 1 
 
             console.log(auctionId, req.files);
 
-            for (let image of req.files["gallery"]) {
-                db.run(`
-                    INSERT INTO images VALUES (?, ?)
-                `, [auctionId, image.originalname]);
+            if (req.files["gallery"]) {
+                for (let image of req.files["gallery"]) {
+                    db.run(`
+                        INSERT INTO images VALUES (?, ?)
+                    `, [auctionId, image.originalname]);
+                }
             }
         }
     });

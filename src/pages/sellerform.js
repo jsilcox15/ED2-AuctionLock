@@ -86,7 +86,7 @@ const FormX = () => {
             withCredentials: true
         }).then((e) => {
             console.log(e);
-            //MyFunction();
+            window.location.replace("/Bidding/?id=" + e.data.message.id);
         });
     };
 
