@@ -16,10 +16,6 @@ import Axios from "axios";
 
 const FormX = () => {
 
-    function MyFunction() {
-        window.location.replace("/")
-    }
-
     const [formValues, setFormValues] = useState({
         title: "",
         manufacturer: "",
@@ -54,8 +50,6 @@ const FormX = () => {
     const dateInputRef = useRef(null);
     const timeInputRef = useRef(null);
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formValues);
@@ -86,7 +80,9 @@ const FormX = () => {
             withCredentials: true
         }).then((e) => {
             console.log(e);
-            //MyFunction();
+            //RedirectFunction();
+            //window.location.replace("/Bidding/?id="+ e.message.id)
+            window.location.replace("/")
         });
     };
 
