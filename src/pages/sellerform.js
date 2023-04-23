@@ -16,10 +16,6 @@ import Axios from "axios";
 
 const FormX = () => {
 
-    function MyFunction() {
-        window.location.replace("/")
-    }
-
     const [formValues, setFormValues] = useState({
         title: "",
         manufacturer: "",
@@ -53,8 +49,6 @@ const FormX = () => {
 
     const dateInputRef = useRef(null);
     const timeInputRef = useRef(null);
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
