@@ -72,7 +72,8 @@ router.post("/register", (req, res, next) => {
 			if (err) return next(err);
 			let user = {
 				id: this.lastID,
-				username: req.body.username
+				username: req.body.username,
+				account_type: req.body.account_type
 			};
 			req.login(user, (err) => {
 				if (err) return next(err);
