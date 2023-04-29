@@ -60,9 +60,11 @@
       JIFFClient = window.JIFFClient;
     } else {
       JIFFClient = JIFFClient = require("../../../jiff/lib/jiff-client");
+      jiff_websockets = require("../../../jiff/lib/ext/jiff-client-websockets");
     }
 
     saved_instance = new JIFFClient(hostname, computation_id, opt);
+    saved_instance.apply_extension(jiff_websockets, opt);
     return saved_instance;
   }
 

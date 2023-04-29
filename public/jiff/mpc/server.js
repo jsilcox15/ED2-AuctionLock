@@ -32,6 +32,9 @@ var jiff_instance = new JIFFServer(http, {
   },
 });
 
+let jiffwebsocketserver = require("../../../jiff/lib/ext/jiff-server-websockets");
+jiff_instance.apply_extension(jiffwebsocketserver);
+
 var rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
