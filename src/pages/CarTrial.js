@@ -15,7 +15,7 @@ function Cars() {
         (async () => {
         let userData;
         try {
-            const response = await fetch("http://localhost:9999/auctions");
+            const response = await fetch("http://"+window.location.hostname+"/auctions");
             userData = await response.json();
         } catch (error) {
             console.log(error);

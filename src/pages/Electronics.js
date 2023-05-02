@@ -13,7 +13,7 @@ function Electronics() {
         (async () => {
         let userData;
         try {
-            const response = await fetch("http://localhost:9999/auctions");
+            const response = await fetch("http://"+window.location.hostname+"/api/auctions");
             userData = await response.json();
         } catch (error) {
             console.log(error);

@@ -76,7 +76,7 @@ const FormX = () => {
             fd.append("gallery", x)
         }
 
-        Axios.post("http://localhost:9999/auctions/create", fd, {
+        Axios.post("http://"+window.location.hostname+"/api/auctions/create", fd, {
             withCredentials: true
         }).then((e) => {
             console.log(e);

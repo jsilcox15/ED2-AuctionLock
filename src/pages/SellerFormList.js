@@ -36,7 +36,7 @@ const RegisterForm = () => {
   const handleSubmit = (event) => {
       event.preventDefault();
 
-      Axios.post("http://localhost:9999/register", {
+      Axios.post("http://"+window.location.hostname+"/api/register", {
         username: userInfo.user,
         password: userInfo.password,
       }, {

@@ -109,7 +109,7 @@ function logOut() {
         window.location.replace("/")
     }
 
-    Axios.post("http://localhost:9999/logout", {}, {
+    Axios.post("http://"+window.location.hostname+"/api/logout", {}, {
     withCredentials: true
     }).then((response) => {
         window.localStorage.removeItem("loggedIn");

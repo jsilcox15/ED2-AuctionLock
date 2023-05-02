@@ -29,14 +29,14 @@ const RegisterForm = () => {
   const handleSubmit = (event) => {
       event.preventDefault();
 
-      Axios.post("http://localhost:9999/register", {
+      Axios.post("http://"+window.location.hostname+"/api/register", {
         username: userInfo.user,
         password: userInfo.password,
         account_type: userInfo.status === "Seller"? 1 : 0,
       }, {
           withCredentials: true
       }).then((response) => {
-        Axios.get("http://localhost:9999/me", {
+        Axios.get("http://"+window.location.hostname+"/api/me", {
           withCredentials: true
         }).then((response) => {
           window.localStorage.setItem("loggedIn", "true")

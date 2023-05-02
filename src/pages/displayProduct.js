@@ -18,7 +18,7 @@ const displayProduct = ({ userData }) => {
                     <Card.Header style={{textAlign: "center"}}>Hot Bids &#128293;</Card.Header>
                     <Card.Img 
                       variant="top" 
-                      src={"http://localhost:9999/uploads/" + userData.thumbnail}  
+                      src={"http://"+window.location.hostname+"/api/uploads/" + userData.thumbnail}  
                       style={{ height: 180, width: 230 }}
                     />
                     <Card.Body>

@@ -61,38 +61,6 @@ db.serialize(() => {
 		salt,
 		1
 	]);
-
-	db.run(`INSERT OR IGNORE INTO auctions
-		(title, description, price, brand, category, thumbnail, end_time, complete, seller, manufacturer, condition)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
-		"iPhone 9",
-		"An apple mobile which is nothing like apple",
-		549,
-		"Apple",
-		"smartphones",
-		"https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-		1682972120,
-		0,
-		0,
-		"Apple (manufacturer)",
-		"Brand new",
-	]);
-
-	db.run(`INSERT OR IGNORE INTO auctions
-		(title, description, price, brand, category, thumbnail, end_time, complete, seller, manufacturer, condition)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
-		"ENDED iPhone 9",
-		"An apple mobile which is nothing like apple",
-		549,
-		"Apple",
-		"smartphones",
-		"https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-		1682972120,
-		1,
-		0,
-		"Apple (manufacturer)",
-		"Brand new"
-	]);
 });
 
 module.exports = db;

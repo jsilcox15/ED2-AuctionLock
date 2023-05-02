@@ -28,7 +28,7 @@ const BidPage = () => {
 
     function getToken(computationId) {
         return new Promise((res, rej) => {
-            Axios.get("http://localhost:9999/jiff/authenticate/" + computationId, {
+            Axios.get("http://"+window.location.hostname+"/api/jiff/authenticate/" + computationId, {
                 withCredentials: true
             }).then((response) => {
                 if (response.data.success) {
@@ -45,7 +45,7 @@ const BidPage = () => {
         getToken(COMPUTATION_ID).then((token) => {
             console.log("token: " + token);
 
-            let hostname = "http://localhost:8080";
+            let hostname = "http://"+window.location.hostname+"/jiffws/";
 
             let userId = parseInt(window.localStorage.getItem("userId"));
 
@@ -65,7 +65,7 @@ const BidPage = () => {
     }
 
     function checkResults() {
-        Axios.get("http://localhost:9999/jiff/results").then((response) => {
+        Axios.get("http://"+window.location.hostname+"/api/jiff/results").then((response) => {
             let results = response.data.results;
             let winnerId = results[0];
             let winnerAmount = results[1];
@@ -102,7 +102,7 @@ const BidPage = () => {
     const [results, setResults] = useState("");
 
     function pullJson() {
-        fetch('http://localhost:9999/auctions/' + storeId)
+        fetch('http://'+window.location.hostname+'/api/auctions/' + storeId)
         .then(response => response.json())
         .then(responseData => {
             setTitle(responseData.message.title);
@@ -138,7 +138,8 @@ const BidPage = () => {
     <Layout>
         <Helmet>
             <script src={withPrefix('jiff/jiff-client.js')}></script>
-            <script src={withPrefix('jiff/mpc/mpc.js')}></script>   
+            <script src={withPrefix('jiff/mpc/mpc.js')}></script>
+            <script src={withPrefix('jiff/jiff-client-websockets.js')}></script>
          </Helmet>
     <div className="App">
     <section class="section-content padding-y bg">
@@ -166,7 +167,7 @@ const BidPage = () => {
                                                 {
                                                     images.map((image, index) => (
                                                         <div key={index}>
-                                                        <img className="Img_sl" src={"http://localhost:9999/uploads/" + image} alt={index} />
+                                                        <img className="Img_sl" src={"http://"+window.location.hostname+"/api/uploads/" + image} alt={index} />
                                                         </div>
                                                     ))
                                                 }

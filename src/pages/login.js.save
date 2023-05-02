@@ -21,13 +21,13 @@ const LoginForm = () => {
   const handleSubmit = (event) => {
       event.preventDefault();
 
-      Axios.post("http://"+window.location.hostname+"/api/login/password", {
+      Axios.post("http://"++"/login/password", {
         username: loginInfo.username,
         password: loginInfo.password,
       }, {
         withCredentials: true
       }).then((response) => {
-        Axios.get("http://"+window.location.hostname+"/api/me", {
+        Axios.get("http://localhost:9999/me", {
           withCredentials: true
         }).then((response) => {
           window.localStorage.setItem("loggedIn", "true")
